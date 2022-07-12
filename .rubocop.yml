@@ -1,10 +1,10 @@
 inherit_gem:
   prettier: rubocop.yml
-require:
-  - rubocop-rails
-  - rubocop-performance
-  - rubocop-minitest
-  - rubocop-rspec
+# require:
+#   - rubocop-rails
+#   - rubocop-performance
+#   - rubocop-minitest
+#   - rubocop-rspec
 
 AllCops:
   Exclude:
@@ -12,12 +12,15 @@ AllCops:
     - bin/*
     - gemfiles/**/*
     - vendor/bundle/**/*
+    - docker/**/*
+    - docker/**
+    - docker/*
   # Automatically enables new cops so that we only have to add them to
   # edit default behavior
-  NewCops: enable
+  NewCops: disable
 
-Rails:
-  Enabled: true
+# Rails:
+#   Enabled: true
 
 Metrics/ClassLength:
   Enabled: false
@@ -79,6 +82,4 @@ Style/HashTransformValues:
 Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
-  Enabled: false
-Style/ClassAndModuleChildren:
   Enabled: false
