@@ -1,0 +1,22 @@
+{
+  "recommendations": [
+    "ms-vscode-remote.vscode-remote-extensionpack",
+    "walkme.ruby-extension-pack",
+    "hoovercj.ruby-linter",
+    "miguel-savignano.ruby-symbols",
+    "eamodio.gitlens",
+    "donjayamanne.githistory",
+    "mhutchie.git-graph",
+    "editorconfig.editorconfig",
+    "wingrunr21.vscode-ruby",
+    "esbenp.prettier-vscode",
+    "seatonjiang.gitmoji-vscode",
+    "streetsidesoftware.code-spell-checker",
+    "yzhang.markdown-all-in-one",
+    "ms-vscode.azure-account",
+    "ms-dotnettools.vscode-dotnet-runtime",
+    "ms-vscode.vscode-node-azure-pack",
+    "arcanis.vscode-zipfs",
+    "KoichiSasada.vscode-rdbg"
+  ]
+}

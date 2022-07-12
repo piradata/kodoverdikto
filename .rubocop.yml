@@ -1,0 +1,84 @@
+inherit_gem:
+  prettier: rubocop.yml
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-minitest
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - Gemfile*
+    - bin/*
+    - gemfiles/**/*
+    - vendor/bundle/**/*
+  # Automatically enables new cops so that we only have to add them to
+  # edit default behavior
+  NewCops: enable
+
+Rails:
+  Enabled: true
+
+Metrics/ClassLength:
+  Enabled: false
+
+# We don't care about method length, since we check method cyclomatic
+# complexity.
+Metrics/MethodLength:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+Naming/FileName:
+  Exclude: ["devise-security.gemspec"]
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  SupportedStyles:
+    - nested
+    - compact
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+# Trailing commas make for clearer diffs because the last line won't appear
+# to have been changed, as it would if it lacked a comma and had one added.
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+# Cop supports --auto-correct.
+# Configuration parameters: PreferredDelimiters.
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    # Using `[]` for string arrays instead of `()`, since normal arrays are
+    # indicated with `[]` not `()`.
+    "%w": "[]"
+    "%W": "[]"
+
+Style/AndOr:
+  # Whether `and` and `or` are banned only in conditionals (conditionals)
+  # or completely (always).
+  # They read better, more like normal English.
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+# No one cares for these or know what they are
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false

@@ -1,0 +1,120 @@
+version: "3.6"
+
+volumes:
+  postgres_data:
+  redis_store:
+
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      network: host
+      args:
+        USERNAME: vscode
+    image: kodoverdikto:latest
+    user: vscode
+    restart: on-failure:5
+    healthcheck:
+      test: ps aux | grep 'rails'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    security_opt:
+      - no-new-privileges
+    links:
+      - redis
+      - mailcatcher
+      - postgres
+    depends_on:
+      - redis
+      - mailcatcher
+      - postgres
+    volumes:
+      - .:/kodeverdikto:cached
+      - ./docker/public:/kodeverdikto/public
+      - ./docker/storage:/kodeverdikto/storage
+      - ./docker/bundle:/usr/local/bundle
+      # - ./docker/node_modules:/kodeverdikto/node_modules
+    ports:
+      - 80:80
+      - 1234:1234
+      - 26162:26162
+    stdin_open: true
+    tty: true
+    env_file:
+      - ./.env
+
+  redis:
+    image: redis:latest
+    restart: on-failure:5
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 1s
+      timeout: 1s
+      retries: 300
+    security_opt:
+      - no-new-privileges
+    volumes:
+      - redis_store:/data
+
+  sidekiq:
+    image: kodoverdikto:latest
+    restart: on-failure:5
+    user: vscode
+    healthcheck:
+      test: ps aux | grep '[s]idekiq'
+      interval: 1s
+      timeout: 1s
+      retries: 300
+    security_opt:
+      - no-new-privileges
+    command: /kodeverdikto/entrypoints/sidekiq-start.sh
+    stdin_open: true
+    tty: true
+    env_file:
+      - ./.env
+    depends_on:
+      - web
+      - redis
+      - postgres
+    volumes:
+      - .:/kodeverdikto:cached
+      - ./docker/public:/kodeverdikto/public
+      - ./docker/storage:/kodeverdikto/storage
+      - ./docker/bundle:/usr/local/bundle
+      # - ./docker/node_modules:/kodeverdikto/node_modules
+
+  postgres:
+    image: postgres:14
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10m
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./.devcontainer/db-entrypoint/1-create-user-and-database.sh:/docker-entrypoint-initdb.d/1-create-user-and-database.sh
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      DATABASE_DB: "${DB_NAME:-kodeverdikto}"
+      DATABASE_USER: "${DB_USER:-kodeverdikto}"
+      DATABASE_PASSWORD: "${DB_PSWD:-SecretPassword}"
+      DATABASE_RESTORE_JOBS: "${DB_JOBS:-8}"
+    ports:
+      - 5460:5432
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    restart: unless-stopped
+    healthcheck:
+      test: ps aux | grep 'mailcatcher'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - 1080:1080

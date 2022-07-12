@@ -65,3 +65,17 @@ yarn-debug.log*
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
+
+
+
+freetds-1.1.24.tar.gz
+
+/docker/
+/docker/*
+/.devcontainer/db-entrypoint/*
+!/.devcontainer/db-entrypoint/1-create-user-and-database.sh
+!/.devcontainer/db-entrypoint/2-restore-dump.sh
+!/.devcontainer/db-entrypoint/3-update-db-values.sh
+
+*.session.sql
+nohup.out
