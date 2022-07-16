@@ -2,13 +2,14 @@
 {
   "name": "KodeVerdikto",
   "dockerComposeFile": ["../docker-compose.yml"],
+  // "onCreateCommand": "",
+  // "updateContentCommand": "",
   // "postCreateCommand": "/kodeverdikto/entrypoints/web-create.sh",
   "postStartCommand": "/kodeverdikto/entrypoints/web-start.sh",
   "shutdownAction": "stopCompose",
   "remoteUser": "vscode",
   "service": "web",
   "overrideCommand": true,
-  "updateContentCommand": "",
   "workspaceFolder": "/kodeverdikto",
   "forwardPorts": [80, 1234, 26162],
   // Set *default* container specific settings.json values on container create.
@@ -84,6 +85,16 @@
         "database": "kodeverdikto_test",
         "username": "kodeverdikto_test",
         "password": "SecretPassword"
+      },
+      {
+        "name": "Rails Master Database",
+        "driver": "PostgreSQL",
+        "previewLimit": 50,
+        "server": "postgres",
+        "port": 5432,
+        "database": "postgres",
+        "username": "postgres",
+        "password": "postgres"
       }
     ],
     "material-icon-theme.files.associations": {

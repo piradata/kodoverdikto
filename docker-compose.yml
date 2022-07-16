@@ -1,9 +1,5 @@
 version: "3.6"
 
-volumes:
-  postgres_data:
-  redis_store:
-
 services:
   web:
     build:
@@ -58,7 +54,7 @@ services:
     security_opt:
       - no-new-privileges
     volumes:
-      - redis_store:/data
+      - ./docker/redis_store:/data
 
   sidekiq:
     image: kodoverdikto:latest
@@ -97,7 +93,7 @@ services:
       retries: 5
       start_period: 10m
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres_data:/var/lib/postgresql/data
       - ./.devcontainer/db-entrypoint/1-create-user-and-database.sh:/docker-entrypoint-initdb.d/1-create-user-and-database.sh
     environment:
       POSTGRES_DB: postgres
@@ -106,9 +102,9 @@ services:
       DATABASE_DB: "${DB_NAME:-kodeverdikto}"
       DATABASE_USER: "${DB_USER:-kodeverdikto}"
       DATABASE_PASSWORD: "${DB_PSWD:-SecretPassword}"
-      DATABASE_DB: "${TEST_DB_NAME:-kodeverdikto_test}"
-      DATABASE_USER: "${TEST_DB_USER:-kodeverdikto_test}"
-      DATABASE_PASSWORD: "${TEST_DB_PSWD:-SecretPassword}"
+      TEST_DATABASE_DB: "${TEST_DB_NAME:-kodeverdikto_test}"
+      TEST_DATABASE_USER: "${TEST_DB_USER:-kodeverdikto_test}"
+      TEST_DATABASE_PASSWORD: "${TEST_DB_PSWD:-SecretPassword}"
       DATABASE_RESTORE_JOBS: "${DB_JOBS:-8}"
     ports:
       - 5460:5432
