@@ -7,6 +7,8 @@
   "shutdownAction": "stopCompose",
   "remoteUser": "vscode",
   "service": "web",
+  "overrideCommand": true,
+  "updateContentCommand": "",
   "workspaceFolder": "/kodeverdikto",
   "forwardPorts": [80, 1234, 26162],
   // Set *default* container specific settings.json values on container create.
