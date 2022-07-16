@@ -106,6 +106,9 @@ services:
       DATABASE_DB: "${DB_NAME:-kodeverdikto}"
       DATABASE_USER: "${DB_USER:-kodeverdikto}"
       DATABASE_PASSWORD: "${DB_PSWD:-SecretPassword}"
+      DATABASE_DB: "${TEST_DB_NAME:-kodeverdikto_test}"
+      DATABASE_USER: "${TEST_DB_USER:-kodeverdikto_test}"
+      DATABASE_PASSWORD: "${TEST_DB_PSWD:-SecretPassword}"
       DATABASE_RESTORE_JOBS: "${DB_JOBS:-8}"
     ports:
       - 5460:5432

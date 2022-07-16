@@ -1,25 +1,26 @@
 ---
 include:
-- "**/*.rb"
+  - "**/*.rb"
 exclude:
-- spec/**/*
-- test/**/*
-- vendor/**/*
-- ".bundle/**/*"
+  - spec/**/*
+  - test/**/*
+  - vendor/**/*
+  - ".bundle/**/*"
+  - docker/**/*
 require:
-- actioncable
-- actionmailer
-- actionpack
-- actionview
-- activejob
-- activemodel
-- activerecord
-- activestorage
-- activesupport
+  - actioncable
+  - actionmailer
+  - actionpack
+  - actionview
+  - activejob
+  - activemodel
+  - activerecord
+  - activestorage
+  - activesupport
 domains: []
 reporters:
-- rubocop
-- require_not_found
+  - rubocop
+  - require_not_found
 # plugins:
 #   - solargraph-arc # Need solargraph ~> 0.44.2 https://github.com/alisnic/solargraph-arc
 require_paths: []

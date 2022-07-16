@@ -1,25 +1,27 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem "sqlite3"
-#
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  adapter: <%= ENV.fetch("DB_ADAPTER") {"postgresql"} %>
+  host: <%= ENV.fetch("DB_HOST") {"localhost"} %>
+  port: <%= ENV.fetch("DB_PORT") {5432} %>
+  database: <%= ENV.fetch("DB_NAME") {"postgres"} %>
+  username: <%= ENV.fetch("DB_USER") {"postgres"} %>
+  password: <%= ENV.fetch("DB_PSWD") {"postgres"} %>
+  statement_limit: 150
 
 development:
   <<: *default
-  database: db/development.sqlite3
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
+homolog:
   <<: *default
-  database: db/test.sqlite3
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  pool: <%= ENV.fetch("DB_POOL") {5} %>
+
+test:
+  adapter: <%= ENV.fetch("TEST_DB_ADAPTER") {"postgresql"} %>
+  host: <%= ENV.fetch("TEST_DB_HOST") {"localhost"} %>
+  port: <%= ENV.fetch("TEST_DB_PORT") {5432} %>
+  database: <%= ENV.fetch("TEST_DB_NAME") {"postgres"} %>
+  username: <%= ENV.fetch("TEST_DB_USER") {"postgres"} %><%= ENV.fetch("TEST_ENV_NUMBER") {""} %>
+  password: <%= ENV.fetch("TEST_DB_PSWD") {"postgres"} %>
+  statement_limit: 150
