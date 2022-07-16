@@ -3,7 +3,7 @@
   "name": "KodeVerdikto",
   "dockerComposeFile": ["../docker-compose.yml"],
   // "postCreateCommand": "/kodeverdikto/entrypoints/web-create.sh",
-  // "postStartCommand": "/kodeverdikto/entrypoints/web-start.sh",
+  "postStartCommand": "/kodeverdikto/entrypoints/web-start.sh",
   "shutdownAction": "stopCompose",
   "remoteUser": "vscode",
   "service": "web",
