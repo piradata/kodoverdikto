@@ -8,6 +8,9 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # Configure IP for web-console!!! (ONLY DEVELOPMENT!!)
+  config.web_console.allowed_ips = ["127.0.0.1", "127.21.0.1", "172.0.0.0/8", "192.168.0.0/16"]
+
   # Do not eager load code on boot.
   config.eager_load = false
 

@@ -34,7 +34,7 @@
       "cwd": "${workspaceRoot}",
       "program": "bin/rails",
       "useBundler": true,
-      "args": ["server"]
+      "args": ["server", "-p", "80", "-b", "0.0.0.0"]
     },
     {
       "name": "Rails db:migrate",
