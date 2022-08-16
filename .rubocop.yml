@@ -1,10 +1,5 @@
 inherit_gem:
   prettier: rubocop.yml
-# require:
-#   - rubocop-rails
-#   - rubocop-performance
-#   - rubocop-minitest
-#   - rubocop-rspec
 
 AllCops:
   Exclude:

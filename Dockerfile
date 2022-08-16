@@ -36,12 +36,10 @@ RUN apk add --update --no-cache \
     less \
     libaio \
     libpq-dev \
-    npm \
     postgresql14-client \
     shared-mime-info \
     sqlite-dev \
-    tzdata \
-    && npm install --global yarn
+    tzdata
 
 # Some gems need build, example 'bcrypt', 'json', 'jaro_winkler' --> (dependency of development gem 'solargraph')
 RUN apk add --no-cache make g++ build-base
