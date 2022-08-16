@@ -65,10 +65,10 @@ freetds-1.1.24.tar.gz
 /docker/*
 
 # Ignore public folder
-/public/*
+# /public/*
 
 # Ignore node_modules folder
-/node_modules/*
+# /node_modules/*
 
 # Ignore uploaded files in development
 /storage/*
