@@ -1,60 +1,24 @@
 {
   "version": "0.2.0",
   "configurations": [
-    // -- START -- New but at moment (ruby 2.7 | Rails 6.0) slow debug (using official debug gem)
     {
-      "name": "Start Rails server with debug",
+      "name": "Start rails server",
       "type": "rdbg",
       "request": "launch",
-      "cwd": "${workspaceRoot}",
-      "command": "",
-      "script": "bin/rails",
+      "cwd": "${workspaceFolder}",
+      "script": "${workspaceFolder}/bin/rails",
       "useBundler": true,
-      "args": ["server"]
-    },
-    {
-      "type": "rdbg",
-      "name": "Attach rdbg",
-      "request": "attach"
-    },
-    {
-      "type": "rdbg",
-      "name": "Debug current file",
-      "request": "launch",
-      "script": "",
-      "askParameters": true,
-      "useBundler": true
-    },
-    // -- FINISH -- New but at moment (ruby 2.7 | Rails 6.0) slow debug (using official debug gem)
-    // -- START -- Old but fast debug (using rdebug gem)
-    {
-      "name": "Rails server",
-      "type": "Ruby",
-      "request": "launch",
-      "cwd": "${workspaceRoot}",
-      "program": "bin/rails",
-      "useBundler": true,
-      "args": ["server", "-p", "80", "-b", "0.0.0.0"]
-    },
-    {
-      "name": "Rails db:migrate",
-      "type": "Ruby",
-      "request": "launch",
-      "cwd": "${workspaceRoot}",
-      "program": "bin/rails",
-      "useBundler": true,
-      "args": ["db:migrate", "--trace"]
-    },
-    {
-      "name": "Listen for rdebug-ide",
-      "type": "Ruby",
-      "request": "attach",
-      "remoteHost": "127.0.0.1",
-      "remotePort": "1234",
-      "cwd": "${workspaceRoot}",
-      "remoteWorkspaceRoot": "${workspaceRoot}",
-      "showDebuggerOutput": true
+      "bundlePath": "${workspaceFolder}/bin/bundle",
+      "rdbgPath": "/usr/local/bin/rdbg",
+      "args": [
+        "server",
+        "-p",
+        "${env:WEBSITES_PORT}",
+        "-b",
+        "0.0.0.0",
+        "-P",
+        "${env:PIDFILE}"
+      ]
     }
-    // -- FINISH -- Old but fast debug (using rdebug gem)
   ]
 }

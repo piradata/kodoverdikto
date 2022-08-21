@@ -7,7 +7,7 @@
   // "postCreateCommand": "/kodeverdikto/entrypoints/web-create.sh",
   "postStartCommand": "/kodeverdikto/entrypoints/web-start.sh",
   "shutdownAction": "stopCompose",
-  "remoteUser": "vscode",
+  // "remoteUser": "vscode",
   "service": "web",
   "overrideCommand": true,
   "workspaceFolder": "/kodeverdikto",

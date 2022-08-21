@@ -48,10 +48,12 @@ if [ -f $PIDFILE ]; then
 fi
 
 echo "... Starting Rails Server ..."
-if [ "$RDEBUG" == "true" ]
-then
-  echo "### DEBUG MODE ###"
-  bundle exec rdebug-ide --skip_wait_for_start --debug --host 0.0.0.0 --port 1234 --dispatcher-port 26162 -- bin/rails server -p $WEBSITES_PORT -b 0.0.0.0 -P $PIDFILE
-else
-  bundle exec rails server -p $WEBSITES_PORT -b 0.0.0.0 -P $PIDFILE
-fi
+# if [ "$RDEBUG" == "true" ]
+# then
+#   echo "### DEBUG MODE ###"
+#   rdbg --command --open --stop-at-load -- bundle exec ruby /kodeverdikto/bin/rails server -p $WEBSITES_PORT -b 0.0.0.0 -P $PIDFILE
+# else
+#   bundle exec rails server -p $WEBSITES_PORT -b 0.0.0.0 -P $PIDFILE
+# fi
+
+bundle exec rails server -p $WEBSITES_PORT -b 0.0.0.0 -P $PIDFILE

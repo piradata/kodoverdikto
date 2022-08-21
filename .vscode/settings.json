@@ -33,14 +33,6 @@
   "vscode-erb-beautify.keepBlankLines": 2,
   "ruby.useBundler": true, //run non-lint commands with bundle exec
   "ruby.useLanguageServer": true, // use the internal language server (see below)
-  // "ruby.interpreter.commandPath": "ruby",
-  // "ruby.pathToBundler": "/var/lib/docker/volumes/kodeverdikto_bundle/_data/bundler",
-  // "ruby.lint": {
-  //     "rubocop": {
-  //         "useBundler": true // enable rubocop via bundler
-  //     },
-  // },
-  // "ruby.format": "rubocop",
   "ruby.codeCompletion": "rcodetools",
   "ruby.intellisense": "rubyLocate",
   "cSpell.enabled": true,
