@@ -62,5 +62,5 @@ ENV APP_VERSION=${APP_VERSION}
 EXPOSE 80
 
 # Start Process
-ENTRYPOINT [ "/kodeverdikto/entrypoints/web-create.sh" ]
-CMD [ "/kodeverdikto/entrypoints/web-start.sh" ]
+ENTRYPOINT [ "/kodeverdikto/scripts/entrypoints/web-create.sh" ]
+CMD [ "/kodeverdikto/scripts/entrypoints/web-start.sh" ]

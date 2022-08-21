@@ -66,7 +66,7 @@ services:
       retries: 300
     security_opt:
       - no-new-privileges
-    command: /kodeverdikto/entrypoints/sidekiq-start.sh
+    command: /kodeverdikto/scripts/entrypoints/sidekiq-start.sh
     stdin_open: true
     tty: true
     env_file:
