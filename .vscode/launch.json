@@ -9,7 +9,7 @@
       "script": "${workspaceFolder}/bin/rails",
       "useBundler": true,
       "bundlePath": "${workspaceFolder}/bin/bundle",
-      "rdbgPath": "/usr/local/bin/rdbg",
+      "rdbgPath": "/usr/local/bundle/rdbg",
       "args": [
         "server",
         "-p",

@@ -27,14 +27,12 @@ then
   echo "Using bundler under development mode"
   # Install gems for development
   bundle check || bundle install
-
 else
   echo "Using bundler under production mode"
   # Start ssh server on container
   # ssh-keygen -A
   # /usr/sbin/sshd
-  # Run update of process
-  # bundle exec rails r lib/update_processes.rb
+
   # Migrate database
   bundle exec rails db:migrate
 fi

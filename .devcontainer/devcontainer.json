@@ -2,16 +2,14 @@
 {
   "name": "KodeVerdikto",
   "dockerComposeFile": ["../docker-compose.yml"],
-  // "onCreateCommand": "",
-  // "updateContentCommand": "",
-  // "postCreateCommand": "/kodeverdikto/scripts/entrypoints/web-create.sh",
+  "postCreateCommand": "/kodeverdikto/scripts/entrypoints/web-create.sh",
   "postStartCommand": "/kodeverdikto/scripts/entrypoints/web-start.sh",
   "shutdownAction": "stopCompose",
   // "remoteUser": "vscode",
   "service": "web",
   "overrideCommand": true,
   "workspaceFolder": "/kodeverdikto",
-  "forwardPorts": [80, 1234, 26162],
+  // "forwardPorts": [80, 1234, 26162],
   // Set *default* container specific settings.json values on container create.
   "settings": {
     "extensions.ignoreRecommendations": true,

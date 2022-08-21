@@ -32,14 +32,18 @@ RUN apk add --no-cache make g++ build-base
 
 ### Configure bundler
 ENV BUNDLE_PATH /usr/local/bundle
+ENV GEM_PATH $BUNDLE_PATH
+ENV BUNDLE_BIN $BUNDLE_PATH
+ENV PATH $BUNDLE_PATH/bin:$BUNDLE_PATH/gems/bin:$PATH
 ARG BUNDLER_VERSION=2.3.20
-RUN gem update --system && \
-    gem install bundler -v $BUNDLER_VERSION && \
+# RUN gem update --system && \
+RUN gem install bundler -v $BUNDLER_VERSION && \
     bundle config set deployment 'false' && \
     bundle config set jobs 20
 ### saddly the bundle gems are comflicting with default gems :(
 # https://stackoverflow.com/questions/70694563/bundle-conflict-with-ruby-default-gems
-RUN rm -rf /usr/local/lib/ruby/gems/${RUBY_VERSION}/gems/debug-*/
+# RUN rm -rf /usr/local/lib/ruby/gems/${RUBY_VERSION}/gems/debug-*/
+# RUN rm -rf /usr/local/bundle/gems/
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 # https://aka.ms/vscode-remote/containers/non-root#_change-the-uidgid-of-an-existing-container-user
