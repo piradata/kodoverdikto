@@ -63,13 +63,9 @@ gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  # gem "debase", ">= 0.2.5.beta2", require: false
   gem "debug", "~> 1.6"
   gem "prettier"
   # gem "rubocop"
-  # gem "rubocop-discourse"
-  # gem "rubocop-rubycw"
-  # gem "ruby-debug-ide", require: false
   gem "solargraph"
 end
 

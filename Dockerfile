@@ -28,7 +28,10 @@ RUN apk add --update --no-cache \
     tzdata
 
 # Some gems need build, example 'bcrypt', 'json', 'jaro_winkler' --> (dependency of development gem 'solargraph')
-RUN apk add --no-cache make g++ build-base
+RUN apk add --update --no-cache make g++ build-base
+
+#install whereis pkg
+RUN apk add --update --no-cache util-linux
 
 ### Configure bundler
 ENV BUNDLE_PATH /usr/local/bundle

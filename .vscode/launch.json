@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Start rails server",
+      "name": "Start rails server with debug",
       "type": "rdbg",
       "request": "launch",
       "cwd": "${workspaceFolder}",
