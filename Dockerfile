@@ -38,9 +38,9 @@ ENV BUNDLE_PATH /usr/local/bundle
 ENV GEM_PATH $BUNDLE_PATH
 ENV BUNDLE_BIN $BUNDLE_PATH
 ENV PATH $BUNDLE_PATH/bin:$BUNDLE_PATH/gems/bin:$PATH
-ARG BUNDLER_VERSION=2.3.20
+ARG BUNDLER_VERSION=2.3.23
 # RUN gem update --system && \
-RUN gem install bundler -v $BUNDLER_VERSION && \
+RUN gem install bundler -v $BUNDLER_VERSION --verbose && \
     bundle config set deployment 'false' && \
     bundle config set jobs 20
 ### saddly the bundle gems are comflicting with default gems :(

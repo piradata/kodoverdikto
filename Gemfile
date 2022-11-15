@@ -55,33 +55,54 @@ gem "tzinfo-data"
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
-gem "sass-rails"
+gem "sassc-rails"
+# gem "sass-rails"
+
+# omniauth auth
+gem "omniauth"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
+
+# Authorization
+# gem "cancancan"
+
+# Impersonation
+gem "pretender"
+
+# Auditoring
+gem "audited"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
+# Others
+gem 'select2-rails'
+gem 'simple_form'
+gem 'render_async'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", "~> 1.6"
-  gem "prettier"
-  # gem "rubocop"
-  gem "solargraph"
+  gem "rspec-rails"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem "rack-mini-profiler"
   # For memory profiling
-  gem 'memory_profiler'
+  gem "memory_profiler"
   # For call-stack profiling flamegraphs
-  gem 'stackprof'
-
+  gem "stackprof"
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   gem "spring"
+
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
+  gem "rubocop-performance", require: false
+  gem "prettier"
+  gem "solargraph"
 end
 
 group :test do

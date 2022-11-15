@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex justify-content-center" style="height: 85vh">
+        <div class="error-card">
+          <div>
+            <h1><%= icon %></h1>
+          </div>
+
+          <div>
+            <h2><%= I18n.t("errors.#{error_code}.title") %></h2>
+
+            <p><%= I18n.t("errors.#{error_code}.message") %></p>
+            <p><%= I18n.t("errors.#{error_code}.instruction") %></p>
+
+            <a href="#" onclick="window.history.back()"><%= I18n.t('buttons.go_back') %></a>
+            <a href="/"><%= I18n.t('buttons.homepage') %></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

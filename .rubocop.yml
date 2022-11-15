@@ -1,5 +1,9 @@
 inherit_gem:
   prettier: rubocop.yml
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
 
 AllCops:
   Exclude:
@@ -8,20 +12,21 @@ AllCops:
     - gemfiles/**/*
     - vendor/bundle/**/*
     - docker/**/*
-    - docker/**
-    - docker/*
   # Automatically enables new cops so that we only have to add them to
   # edit default behavior
-  NewCops: disable
+  NewCops: enable
 
-# Rails:
-#   Enabled: true
-
-Metrics/ClassLength:
-  Enabled: false
+Rails:
+  Enabled: true
 
 # We don't care about method length, since we check method cyclomatic
 # complexity.
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
 Metrics/MethodLength:
   Enabled: false
 
@@ -31,11 +36,17 @@ Layout/LineLength:
 Naming/FileName:
   Exclude: ["devise-security.gemspec"]
 
-Style/ClassAndModuleChildren:
-  EnforcedStyle: compact
-  SupportedStyles:
-    - nested
-    - compact
+Rails/DuplicateAssociation:
+  Enabled: false
+
+Style/ConditionalAssignment:
+  Enabled: false
+
+Style/NegatedIf:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
 
 Style/SymbolArray:
   EnforcedStyle: brackets
@@ -73,8 +84,20 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 
-# No one cares for these or know what they are
+# No one cares for these
 Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
+  Enabled: false
+  SafeAutoCorrect: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Metrics/AbcSize:
+  CountRepeatedAttributes: false
+  Max: 20
+  Exclude:
+    - db/migrate/**/*.rb # mostly create table blocks
+
+Style/RedundantReturn:
   Enabled: false

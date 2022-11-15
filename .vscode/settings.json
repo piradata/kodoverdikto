@@ -41,5 +41,11 @@
     "docker-compose.sonar-scanner.yml": "docker",
     ".solargraph.yml": "rubocop"
   },
-  "cSpell.words": ["kodeverdikto"]
+  "cSpell.words": [
+    "devcontainer",
+    "dockercompose",
+    "entrypoints",
+    "kodeverdikto",
+    "solargraph"
+  ]
 }

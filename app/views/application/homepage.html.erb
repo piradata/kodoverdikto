@@ -1,0 +1,12 @@
+<h1>Kodoverdikto</h1>
+
+<p>That is all folks</p>
+
+<h2><%= current_user.name %></h2>
+
+<% if current_user != true_user %>
+  <%= link_to "Edit Account", stop_impersonating_user_path %>
+<% end %>
+
+<%= link_to "Edit Account", edit_user_registration_path %>
+<%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>

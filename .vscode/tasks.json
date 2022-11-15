@@ -21,13 +21,6 @@
         "kind": "build",
         "isDefault": true
       }
-    },
-    {
-      "type": "rake",
-      "task": "test:run",
-      "group": "test",
-      "problemMatcher": [],
-      "label": "rake: test:run"
     }
   ]
 }

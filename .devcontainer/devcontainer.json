@@ -2,8 +2,8 @@
 {
   "name": "KodeVerdikto",
   "dockerComposeFile": ["../docker-compose.yml"],
-  "postCreateCommand": "/kodeverdikto/scripts/entrypoints/web-create.sh",
-  "postStartCommand": "/kodeverdikto/scripts/entrypoints/web-start.sh",
+  // "postCreateCommand": "/kodeverdikto/scripts/entrypoints/web-create.sh",
+  // "postStartCommand": "/kodeverdikto/scripts/entrypoints/web-start.sh",
   "shutdownAction": "stopCompose",
   // "remoteUser": "vscode",
   "service": "web",
@@ -31,7 +31,6 @@
       "editor.detectIndentation": false,
       "editor.insertSpaces": true,
       "editor.tabSize": 2,
-      // "editor.defaultFormatter": "rebornix.ruby",
       "editor.defaultFormatter": "castwide.solargraph",
       "editor.formatOnSave": true
     },

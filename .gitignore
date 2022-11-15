@@ -57,7 +57,7 @@ yarn-debug.log*
 
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
-# .env
+.env
 
 freetds-1.1.24.tar.gz
 
