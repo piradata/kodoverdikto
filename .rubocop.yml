@@ -98,9 +98,10 @@ Style/ClassAndModuleChildren:
 
 Metrics/AbcSize:
   CountRepeatedAttributes: false
-  Max: 20
+  Max: 22
   Exclude:
     - db/migrate/**/*.rb # mostly create table blocks
+    - db/migrate/*.rb # mostly create table blocks
 
 Style/RedundantReturn:
   Enabled: false
