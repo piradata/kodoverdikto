@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd $APP_ROOT/mainapp
+# cd $APP_ROOT/kodeverdikto
 
 if [ -f $PIDFILE ]; then
   rm -f $PIDFILE

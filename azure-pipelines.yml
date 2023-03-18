@@ -1,0 +1,274 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+# https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/key-pipelines-concepts?view=azure-devops
+
+name: $(date:yyyyMMdd)$(rev:.r)
+
+trigger:
+  branches:
+    include:
+      - refs/heads/homolog
+      - refs/heads/production
+  batch: false
+
+variables:
+  DOCKER_BUILDKIT: 1
+  vmImageName: ubuntu-20.04
+  registry: kodeverdikto.azurecr.io
+  containerRegistry: kodeverdikto
+  imageName: default_image
+  tag: default_tag
+  BUNDLE_CACHE_FOLDER: $(Pipeline.Workspace)/vendor/bundle
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/node_modules
+  testDatabaseName: test
+  testDatabaseUser: test
+  testDatabasePassword: test
+
+resources:
+  containers:
+    - container: postgres
+      image: postgres:11-alpine
+      ports:
+        - 5432:5432/tcp
+      env:
+        POSTGRES_DB: $(testDatabaseName)
+        POSTGRES_USER: $(testDatabaseUser)
+        POSTGRES_PASSWORD: $(testDatabasePassword)
+    - container: redis
+      image: redis:6.2.4
+      ports:
+        - 6379:6379
+    - container: selenium
+      image: selenium/standalone-chrome:3
+      ports:
+        - 4444:4444/tcp
+      volumes:
+        - /dev/shm:/dev/shm
+pool:
+  name: Azure Pipelines
+  vmImage: $(vmImageName)
+
+stages:
+  - stage: config_stage
+    displayName: Config Stage
+    jobs:
+      - job: config_job
+        displayName: Configuration Job
+        # this is a gambit, please split the repository from norway and brasil or
+        # just transform everything in the same codebase already
+        steps:
+          - bash: |
+              echo "##vso[task.setvariable variable=shortHash;isOutput=true]${BUILD_SOURCEVERSION:0:8}"
+              echo "##vso[task.setvariable variable=appVersion;isOutput=true]$(Build.SourceBranchName) (${BUILD_SOURCEVERSION:0:8})"
+              case $(Build.SourceBranch) in
+                refs/heads/homolog)
+                  echo "##vso[task.setvariable variable=imageName;isOutput=true]kodeverdikto"
+                  echo "##vso[task.setvariable variable=tag;isOutput=true]qa"
+                  ;;
+                refs/heads/production)
+                  echo "##vso[task.setvariable variable=imageName;isOutput=true]kodeverdikto"
+                  echo "##vso[task.setvariable variable=tag;isOutput=true]prod_br"
+                  ;;
+                *)
+                  echo "unexpected branch $(Build.SourceBranch)"
+                  echo $(tag)
+                  exit 1
+                  ;;
+              esac
+            displayName: "Set global variables"
+            name: "set_global_variables"
+            continueOnError: false # if branch is unexpected, stop execution
+
+  - stage: test_quality_stage
+    displayName: test & quality
+    dependsOn: config_stage
+    # https://learn.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#use-outputs-in-a-different-stage
+    variables:
+      appVersion: $[ stageDependencies.config_stage.config_job.outputs['set_global_variables.appVersion'] ]
+      shortHash: $[ stageDependencies.config_stage.config_job.outputs['set_global_variables.shortHash'] ]
+      imageName: $[ stageDependencies.config_stage.config_job.outputs['set_global_variables.imageName'] ]
+      tag: $[ stageDependencies.config_stage.config_job.outputs['set_global_variables.tag'] ]
+    jobs:
+      - job: test_vars
+        steps:
+          - bash: |
+              echo "Hello!"
+              echo "shortHash $(shortHash)"
+              echo "appVersion $(appVersion)"
+              echo "imageName $(imageName)"
+              echo "tag $(tag)"
+              echo "registry $(registry)"
+              echo "containerRegistry $(containerRegistry)"
+              echo "branchName $(Build.SourceBranchName)"
+              echo "fullBranchName $(Build.SourceBranch)"
+              git branch
+            displayName: "test_vars"
+        displayName: "Debug script"
+        continueOnError: true
+
+      - job: quality_job
+        displayName: Quality job
+        steps:
+          - bash: |
+              docker run --rm \
+                --name sonarscanner \
+                -e SONAR_LOGIN="$(SONARTOKEN)" \
+                -v "$(pwd)/:/usr/src/" \
+                sonarsource/sonar-scanner-cli
+            displayName: "sonarscanner"
+
+      - job: tests_job
+        displayName: Tests job
+
+        services:
+          postgres: postgres
+          redis: redis
+          selenium: selenium
+          sqlserver: sqlserver
+
+        variables:
+          RAILS_ENV: test
+          TEST_DB_NAME: $(testDatabaseName)
+          TEST_DB_USER: $(testDatabaseUser)
+          TEST_DB_PSWD: $(testDatabasePassword)
+
+        steps:
+          - bash: |
+              sudo apt-get update
+              sudo apt-get install freetds-dev libpq-dev
+            displayName: Install dependencies
+
+          - task: UseRubyVersion@0
+            inputs:
+              versionSpec: ">= 3.1"
+              addToPath: true
+
+          - task: Cache@2
+            inputs:
+              key: '"bundle" | "$(Agent.OS)" | "$(Build.SourcesDirectory)/Gemfile.lock"'
+              path: $(BUNDLE_CACHE_FOLDER)
+              cacheHitVar: CACHE_RESTORED_BUNDLE
+            displayName: Cache Bundler gems
+
+          - bash: |
+              gem install bundler --no-document
+              bundle config set deployment 'false'
+              bundle config set without 'development'
+              bundle config set path $(BUNDLE_CACHE_FOLDER)
+              bundle install --retry=3 --jobs=8
+            displayName: Install gems with Bundler
+
+          # - task: Cache@2
+          #   inputs:
+          #     key: '"yarn" | "$(Agent.OS)" | "$(Build.SourcesDirectory)/yarn.lock"'
+          #     path: $(YARN_CACHE_FOLDER)
+          #     cacheHitVar: CACHE_RESTORED_YARN
+          #   displayName: Cache Yarn packages
+
+          - bash: |
+              spring rubocop --require code_scanning --format CodeScanning::SarifFormatter -o sarif_scan/rubocop.sarif
+            displayName: RuboCop
+            continueOnError: true
+
+          - bash: |
+              spring brakeman -f sarif -o sarif_scan/report.sarif
+            displayName: Brakeman
+            continueOnError: true
+
+          - bash: |
+              yarn install
+            displayName: yarn install
+
+          - bash: |
+              spring rails db:test:load
+            displayName: "Database Setup"
+
+          - bash: |
+              bundle exec rspec --format RspecJunitFormatter --out TEST-0.xml
+            displayName: Rspec
+
+          # https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=trx%2Cyaml#arguments
+          - task: PublishTestResults@2
+            condition: succeededOrFailed()
+            inputs:
+              testRunner: JUnit
+              failTaskOnFailedTests: true
+              testRunTitle: Ruby tests
+              searchFolder: "$(System.DefaultWorkingDirectory)"
+
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: Cobertura
+              summaryFileLocation: "$(System.DefaultWorkingDirectory)/**/coverage.xml"
+              reportDirectory: "$(System.DefaultWorkingDirectory)/**/coverage"
+
+          # If you are adding tests to an existing project that already uses Azure Pipelines, this is probably the only
+          # new task you'll need to add.
+          #
+          # This task is how the "Scans" tab in our Azure Pipelines build results page gets its data. It requires using
+          # PublishBuildArtifacts rather than the newer PublishPipelineArtifacts.
+          - task: PublishBuildArtifacts@1
+            displayName: publish sarif results
+            inputs:
+              # The exact name "CodeAnalysisLogs" is required for the Sarif Results Viewer Extension for Azure Pipelines
+              # to find the .sarif files our accessibility test produces.
+              artifactName: "CodeAnalysisLogs"
+              # "sarif_scan" is not a required convention; it just happens to be where our tests write .sarif files to.
+              pathtoPublish: "$(Build.SourcesDirectory)/sarif_scan"
+            condition: succeededOrFailed()
+
+  - stage: build_deploy_stage
+    displayName: build & deploy
+    dependsOn:
+      - config_stage
+      - test_quality_stage
+    variables:
+      appVersion: $[ stageDependencies.config_stage.config_job.outputs['set_global_variables.appVersion'] ]
+      shortHash: $[ stageDependencies.config_stage.config_job.outputs['set_global_variables.shortHash'] ]
+      imageName: $[ stageDependencies.config_stage.config_job.outputs['set_global_variables.imageName'] ]
+      tag: $[ stageDependencies.config_stage.config_job.outputs['set_global_variables.tag'] ]
+    jobs:
+      - job: test_vars_2
+        steps:
+          - bash: |
+              echo "Hello!"
+              echo "shortHash $(shortHash)"
+              echo "appVersion $(appVersion)"
+              echo "imageName $(imageName)"
+              echo "tag $(tag)"
+              echo "registry $(registry)"
+              echo "containerRegistry $(containerRegistry)"
+              echo "branchName $(Build.SourceBranchName)"
+              echo "fullBranchName $(Build.SourceBranch)"
+              git branch
+            displayName: "test_vars_2"
+        displayName: "Debug script"
+        continueOnError: true
+
+      - job: build_deploy_job
+        displayName: Build & deploy job
+        steps:
+          - task: Docker@2
+            displayName: Login on container registry
+            inputs:
+              containerRegistry: $(containerRegistry)
+              command: login
+
+          - bash: |
+              docker build -f './Dockerfile' . -t '$(registry)/$(imageName):$(tag)' -t '$(registry)/$(imageName):$(Build.BuildId)' --build-arg APP_VERSION='$(appVersion)' --build-arg VCS_REF='$(Build.SourceVersion)' --build-arg VCS_URL='$(Build.Repository.Uri)' --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from='$(registry)/$(imageName):$(tag)'
+            displayName: Build image
+            continueOnError: false
+
+          - bash: |
+              echo "$(docker images $(registry)/$(imageName))"
+              docker push "$(registry)/$(imageName):$(tag)"
+            displayName: Push image
+            continueOnError: false
+
+          - task: Docker@2
+            displayName: logout from container registry
+            inputs:
+              command: logout

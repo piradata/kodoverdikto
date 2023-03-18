@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd $APP_ROOT/mainapp
+# cd $APP_ROOT/kodeverdikto
 
 if [ "$RAILS_ENV" == "development" ]
 then
@@ -28,6 +28,7 @@ then
   echo "Using bundler under development mode"
   # Install gems for development
   bundle check || bundle install
+  echo "Gems OK"
 
   # solargraph bundle
 
@@ -50,6 +51,10 @@ then
   done
 
   # bin/yarn
+  # echo "Yarn OK"
+
+  bundle exec rails db:create
+  echo "Database OK"
 else
   echo "Using bundler under production mode"
   # Start ssh server on container

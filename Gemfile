@@ -97,11 +97,19 @@ group :development do
   gem "stackprof"
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   gem "spring"
-
+  gem "spring-commands-rspec"
+  # Auto Testing
+  gem "guard"
+  gem "guard-rspec", require: false
+  gem "guard-rubocop"
+  # Code formatter/Styler
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
+  gem "rubocop-discourse", require: false
   gem "rubocop-performance", require: false
+  gem "spring-commands-rubocop"
   gem "prettier"
+  # Code intellisense
   gem "solargraph"
 end
 

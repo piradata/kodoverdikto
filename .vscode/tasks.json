@@ -21,6 +21,21 @@
         "kind": "build",
         "isDefault": true
       }
-    }
+    },
+    {
+      "label": "run rails console",
+      "type": "shell",
+      "command": "bundle",
+      "args": [
+        "exec",
+        "rails",
+        "console"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "none",
+        "isDefault": true
+      }
+    },
   ]
 }

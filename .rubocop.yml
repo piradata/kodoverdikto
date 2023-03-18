@@ -84,6 +84,9 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either
+
 # No one cares for these
 Style/Documentation:
   Enabled: false
@@ -100,4 +103,7 @@ Metrics/AbcSize:
     - db/migrate/**/*.rb # mostly create table blocks
 
 Style/RedundantReturn:
+  Enabled: false
+
+Lint/UnusedMethodArgument:
   Enabled: false
