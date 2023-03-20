@@ -2,6 +2,7 @@
 {
   "name": "KodoVerdikto",
   "dockerComposeFile": ["../docker-compose.yml"],
+  // "postCreateCommand": "bundle check | bundle install",
   // "postCreateCommand": "/kodoverdikto/scripts/entrypoints/web-create.sh",
   // "postStartCommand": "/kodoverdikto/scripts/entrypoints/web-start.sh",
   "shutdownAction": "stopCompose",

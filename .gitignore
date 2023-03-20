@@ -64,6 +64,8 @@ freetds-1.1.24.tar.gz
 # Ignore docker volumes folder
 /docker/**
 !/docker/.keep
+!/docker/bundle/
+!/docker/bundle/.keep
 
 # Ignore public folder
 # /public/*
