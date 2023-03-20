@@ -4,7 +4,7 @@ require "sidekiq/web"
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
-  Sidekiq::Web.use(::Rack::Protection, { use: :authenticity_token, logging: true, message: "Didn't work!" })
+  Sidekiq::Web.use(Rack::Protection, { use: :authenticity_token, logging: true, message: "Didn't work!" })
 
   devise_for :users, controllers: {
     registrations: "users/registrations",

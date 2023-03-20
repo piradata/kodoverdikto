@@ -16,7 +16,7 @@ class InstallAudited < ActiveRecord::Migration[7.0]
       t.column :comment, :string
       t.column :remote_address, :string
       t.column :request_uuid, :string
-      t.datetime :created_at, default: -> { 'CURRENT_TIMESTAMP' }
+      t.datetime :created_at
     end
 
     add_index :audits, [:auditable_type, :auditable_id, :version], name: 'auditable_index'

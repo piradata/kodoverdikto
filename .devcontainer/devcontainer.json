@@ -1,7 +1,9 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 {
   "name": "KodeVerdikto",
-  "dockerComposeFile": ["../docker-compose.yml"],
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
   // "postCreateCommand": "/kodeverdikto/scripts/entrypoints/web-create.sh",
   // "postStartCommand": "/kodeverdikto/scripts/entrypoints/web-start.sh",
   "shutdownAction": "stopCompose",

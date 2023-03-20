@@ -47,5 +47,8 @@
     "entrypoints",
     "kodeverdikto",
     "solargraph"
-  ]
+  ],
+  "rubyTestExplorer.rspecCommand": "rspec",
+  "rubyTestExplorer.minitestCommand": "rake",
+  "solargraph.useBundler": true
 }

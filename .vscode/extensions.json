@@ -17,6 +17,7 @@
     "ms-dotnettools.vscode-dotnet-runtime",
     "ms-vscode.vscode-node-azure-pack",
     "arcanis.vscode-zipfs",
-    "KoichiSasada.vscode-rdbg"
+    "koichisasada.vscode-rdbg",
+    "connorshea.vscode-ruby-test-adapter"
   ]
 }

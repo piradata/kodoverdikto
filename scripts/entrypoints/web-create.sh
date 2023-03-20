@@ -53,7 +53,7 @@ then
   # bin/yarn
   # echo "Yarn OK"
 
-  bundle exec rails db:create
+  rails db:create
   echo "Database OK"
 else
   echo "Using bundler under production mode"
@@ -61,9 +61,9 @@ else
   ssh-keygen -A
   /usr/sbin/sshd
   # Run update of process
-  bundle exec rails r lib/update_processes.rb
+  rails r lib/update_processes.rb
   # Migrate database
-  bundle exec rails db:migrate
+  rails db:migrate
 fi
 
 exec "$@"

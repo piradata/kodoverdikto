@@ -1,5 +1,13 @@
 version: "3.6"
 
+volumes:
+  redis_store:
+    name: redis_store
+    driver: local
+  postgres_data:
+    name: postgres_data
+    driver: local
+
 services:
   web:
     build:
@@ -28,8 +36,8 @@ services:
       - postgres
     volumes:
       - .:/kodeverdikto:cached
-      - ./docker/public:/kodeverdikto/public
-      - ./docker/storage:/kodeverdikto/storage
+      # - ./docker/public:/kodeverdikto/public
+      # - ./docker/storage:/kodeverdikto/storage
       - ./docker/bundle:/usr/local/bundle
     ports:
       - 80:80
@@ -51,7 +59,7 @@ services:
     security_opt:
       - no-new-privileges
     volumes:
-      - ./docker/redis_store:/data
+      - redis_store:/data
 
   sidekiq:
     image: kodoverdikto:latest
@@ -74,8 +82,8 @@ services:
       - postgres
     volumes:
       - .:/kodeverdikto:cached
-      - ./docker/public:/kodeverdikto/public
-      - ./docker/storage:/kodeverdikto/storage
+      # - ./docker/public:/kodeverdikto/public
+      # - ./docker/storage:/kodeverdikto/storage
       - ./docker/bundle:/usr/local/bundle
 
   postgres:
@@ -88,7 +96,7 @@ services:
       retries: 5
       start_period: 10m
     volumes:
-      - ./docker/postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
       - ./.devcontainer/db-entrypoint/1-create-user-and-database.sh:/docker-entrypoint-initdb.d/1-create-user-and-database.sh
     environment:
       POSTGRES_DB: postgres
