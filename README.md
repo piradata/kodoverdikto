@@ -20,16 +20,22 @@ Rails 7
 
 First set up an ssh key for you with `ssh-keygen -t rsa -b 4096` if you don't have any and clone the project with `git clone`.
 
-Open the project with VS Code and **install the Dev Containers extension**.
-
-Click on the green bar in the bottom-left corner and them select `Reopen in container`.
+Open the project with VS Code.
 
 Make a copy of `.env.sample` and call it `.env`, them write up the following values:
 - GOOGLE_CLIENT_ID
 - GOOGLE_CLIENT_SECRET
 - RAILS_SECRET_KEY_BASE
 
-To run the server press `ctrl+B` to run the build task in vscode. Alternatively you can press `ctrl+p` and type `task ` (yes, `task` + an empty space) and select one of the custom tasks for the workspace. There is a ta
+Obs: If you dont create the `.env` file, the project will fail to open as a container.
+
+Then **install the Dev Containers extension**.
+
+Click on the green bar in the bottom-left corner and them select `Reopen in container`.
+
+Run `bundle install` in the container terminal.
+
+To run the server press `ctrl+shift+B` to run the build task in vscode. Alternatively you can press `ctrl+P` and type `task ` (yes, `task` + an empty space) and select one of the custom tasks for the workspace. There is a ta
 
 Then run `guard` on a separated terminal to automate testing, formatting and bundle gem updates.
 

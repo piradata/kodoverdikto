@@ -1,16 +1,14 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 {
-  "name": "KodeVerdikto",
-  "dockerComposeFile": [
-    "../docker-compose.yml"
-  ],
-  // "postCreateCommand": "/kodeverdikto/scripts/entrypoints/web-create.sh",
-  // "postStartCommand": "/kodeverdikto/scripts/entrypoints/web-start.sh",
+  "name": "KodoVerdikto",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  // "postCreateCommand": "/kodoverdikto/scripts/entrypoints/web-create.sh",
+  // "postStartCommand": "/kodoverdikto/scripts/entrypoints/web-start.sh",
   "shutdownAction": "stopCompose",
   // "remoteUser": "vscode",
   "service": "web",
   "overrideCommand": true,
-  "workspaceFolder": "/kodeverdikto",
+  "workspaceFolder": "/kodoverdikto",
   // "forwardPorts": [80, 1234, 26162],
   // Set *default* container specific settings.json values on container create.
   "settings": {
@@ -63,7 +61,7 @@
     "ruby.codeCompletion": "rcodetools",
     "ruby.intellisense": "rubyLocate",
     "ruby.rubocop.onSave": true,
-    "ruby.rubocop.configFilePath": "/kodeverdikto/.rubocop.yml",
+    "ruby.rubocop.configFilePath": "/kodoverdikto/.rubocop.yml",
     "sqltools.connections": [
       {
         "name": "Rails Development Database",
@@ -71,8 +69,8 @@
         "previewLimit": 50,
         "server": "postgres",
         "port": 5432,
-        "database": "kodeverdikto",
-        "username": "kodeverdikto",
+        "database": "kodoverdikto",
+        "username": "kodoverdikto",
         "password": "SecretPassword"
       },
       {
@@ -81,8 +79,8 @@
         "previewLimit": 50,
         "server": "postgres",
         "port": 5432,
-        "database": "kodeverdikto_test",
-        "username": "kodeverdikto_test",
+        "database": "kodoverdikto_test",
+        "username": "kodoverdikto_test",
         "password": "SecretPassword"
       },
       {

@@ -35,9 +35,9 @@ services:
       - mailcatcher
       - postgres
     volumes:
-      - .:/kodeverdikto:cached
-      # - ./docker/public:/kodeverdikto/public
-      # - ./docker/storage:/kodeverdikto/storage
+      - .:/kodoverdikto:cached
+      # - ./docker/public:/kodoverdikto/public
+      # - ./docker/storage:/kodoverdikto/storage
       - ./docker/bundle:/usr/local/bundle
     ports:
       - 80:80
@@ -72,7 +72,7 @@ services:
       retries: 300
     security_opt:
       - no-new-privileges
-    command: /kodeverdikto/scripts/entrypoints/sidekiq-start.sh
+    command: /kodoverdikto/scripts/entrypoints/sidekiq-start.sh
     stdin_open: true
     tty: true
     env_file:
@@ -81,9 +81,9 @@ services:
       - redis
       - postgres
     volumes:
-      - .:/kodeverdikto:cached
-      # - ./docker/public:/kodeverdikto/public
-      # - ./docker/storage:/kodeverdikto/storage
+      - .:/kodoverdikto:cached
+      # - ./docker/public:/kodoverdikto/public
+      # - ./docker/storage:/kodoverdikto/storage
       - ./docker/bundle:/usr/local/bundle
 
   postgres:
@@ -102,11 +102,11 @@ services:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      DATABASE_DB: "${DB_NAME:-kodeverdikto}"
-      DATABASE_USER: "${DB_USER:-kodeverdikto}"
+      DATABASE_DB: "${DB_NAME:-kodoverdikto}"
+      DATABASE_USER: "${DB_USER:-kodoverdikto}"
       DATABASE_PASSWORD: "${DB_PSWD:-SecretPassword}"
-      TEST_DATABASE_DB: "${TEST_DB_NAME:-kodeverdikto_test}"
-      TEST_DATABASE_USER: "${TEST_DB_USER:-kodeverdikto_test}"
+      TEST_DATABASE_DB: "${TEST_DB_NAME:-kodoverdikto_test}"
+      TEST_DATABASE_USER: "${TEST_DB_USER:-kodoverdikto_test}"
       TEST_DATABASE_PASSWORD: "${TEST_DB_PSWD:-SecretPassword}"
       DATABASE_RESTORE_JOBS: "${DB_JOBS:-8}"
     ports:

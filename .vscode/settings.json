@@ -45,7 +45,7 @@
     "devcontainer",
     "dockercompose",
     "entrypoints",
-    "kodeverdikto",
+    "kodoverdikto",
     "solargraph"
   ],
   "rubyTestExplorer.rspecCommand": "rspec",

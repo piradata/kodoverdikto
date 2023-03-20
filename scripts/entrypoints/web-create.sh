@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# cd $APP_ROOT/kodeverdikto
+# cd $APP_ROOT/kodoverdikto
 
 if [ "$RAILS_ENV" == "development" ]
 then

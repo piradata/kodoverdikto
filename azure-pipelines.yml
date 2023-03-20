@@ -17,8 +17,8 @@ trigger:
 variables:
   DOCKER_BUILDKIT: 1
   vmImageName: ubuntu-20.04
-  registry: kodeverdikto.azurecr.io
-  containerRegistry: kodeverdikto
+  registry: kodoverdikto.azurecr.io
+  containerRegistry: kodoverdikto
   imageName: default_image
   tag: default_tag
   BUNDLE_CACHE_FOLDER: $(Pipeline.Workspace)/vendor/bundle
@@ -65,11 +65,11 @@ stages:
               echo "##vso[task.setvariable variable=appVersion;isOutput=true]$(Build.SourceBranchName) (${BUILD_SOURCEVERSION:0:8})"
               case $(Build.SourceBranch) in
                 refs/heads/homolog)
-                  echo "##vso[task.setvariable variable=imageName;isOutput=true]kodeverdikto"
+                  echo "##vso[task.setvariable variable=imageName;isOutput=true]kodoverdikto"
                   echo "##vso[task.setvariable variable=tag;isOutput=true]qa"
                   ;;
                 refs/heads/production)
-                  echo "##vso[task.setvariable variable=imageName;isOutput=true]kodeverdikto"
+                  echo "##vso[task.setvariable variable=imageName;isOutput=true]kodoverdikto"
                   echo "##vso[task.setvariable variable=tag;isOutput=true]prod_br"
                   ;;
                 *)

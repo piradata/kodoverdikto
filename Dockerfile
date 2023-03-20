@@ -2,7 +2,7 @@ ARG RUBY_VERSION=3.1.3-alpine3.16
 FROM ruby:${RUBY_VERSION}
 
 ### Define ENV Variables
-ENV APP_ROOT /kodeverdikto
+ENV APP_ROOT /kodoverdikto
 
 ARG BUNDLER_VERSION=2.4.1
 ENV BUNDLE_PATH /usr/local/bundle
