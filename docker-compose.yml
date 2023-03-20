@@ -41,8 +41,8 @@ services:
       - ./docker/bundle:/usr/local/bundle
     ports:
       - 80:80
-      - 1234:1234
-      - 26162:26162
+      # - 1234:1234
+      # - 26162:26162
     stdin_open: true
     tty: true
     env_file:

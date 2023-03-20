@@ -1,8 +1,8 @@
 # KodoVerdikto
-Platform for coding challenges and code interviews
+Platform for coding challenges and code interviews.
 
 ## Hello!
-Please help to code this, any help is wanted :)
+Please help to code this, any help is wanted. 🙂
 
 ## Stack
 Rails 7
@@ -23,6 +23,11 @@ First set up an ssh key for you with `ssh-keygen -t rsa -b 4096` if you don't ha
 Open the project with VS Code and **install the Dev Containers extension**.
 
 Click on the green bar in the bottom-left corner and them select `Reopen in container`.
+
+Make a copy of `.env.sample` and call it `.env`, them write up the following values:
+- GOOGLE_CLIENT_ID
+- GOOGLE_CLIENT_SECRET
+- RAILS_SECRET_KEY_BASE
 
 To run the server press `ctrl+B` to run the build task in vscode. Alternatively you can press `ctrl+p` and type `task ` (yes, `task` + an empty space) and select one of the custom tasks for the workspace. There is a ta
 

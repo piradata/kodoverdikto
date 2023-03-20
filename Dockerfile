@@ -68,11 +68,14 @@ RUN apk add --update --no-cache --virtual node-build-dependencies nodejs && \
 RUN apk add --update --no-cache openssh-server && \
     echo "root:Docker!" | chpasswd && \
     mkdir /var/run/sshd
+
 # Copy the sshd_config file to the /etc/ssh/ directory
 COPY resources/ssh/sshd_config /etc/ssh/
+
 # Open port 2222 for SSH access
 EXPOSE 2222
 
+# Open port 80 for HTTP access
 EXPOSE 80
 
 ENTRYPOINT [ "/app/entrypoints/web-create.sh" ]

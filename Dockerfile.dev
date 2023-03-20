@@ -65,7 +65,7 @@ USER $USERNAME
 ARG APP_VERSION=untagged
 ENV APP_VERSION=${APP_VERSION}
 
-# Expose ports
+# Open port 80 for HTTP access
 EXPOSE 80
 
 # Start Process

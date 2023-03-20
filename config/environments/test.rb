@@ -11,6 +11,8 @@ Rails.application.configure do
   # Turn false under Spring and add config.action_view.cache_template_loading = true.
   config.cache_classes = false
   config.action_view.cache_template_loading = true
+
+  # NOTE: in versions of Rails before 7.1, the config.enable_reloading setting is called config.cache_classes, and it needs to be false for Spring to work.
   # config.enable_reloading = true
 
   # Eager loading loads your whole application. When running a single test locally,
