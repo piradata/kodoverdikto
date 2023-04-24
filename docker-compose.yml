@@ -36,17 +36,13 @@ services:
       - postgres
     volumes:
       - .:/kodoverdikto:cached
-      # - ./docker/public:/kodoverdikto/public
-      # - ./docker/storage:/kodoverdikto/storage
       - ./docker/bundle:/usr/local/bundle
     ports:
       - 80:80
-      # - 1234:1234
-      # - 26162:26162
     stdin_open: true
     tty: true
     env_file:
-      - ./.env
+      - .env
 
   redis:
     image: redis:latest
@@ -76,14 +72,12 @@ services:
     stdin_open: true
     tty: true
     env_file:
-      - ./.env
+      - .env
     depends_on:
       - redis
       - postgres
     volumes:
       - .:/kodoverdikto:cached
-      # - ./docker/public:/kodoverdikto/public
-      # - ./docker/storage:/kodoverdikto/storage
       - ./docker/bundle:/usr/local/bundle
 
   postgres:
