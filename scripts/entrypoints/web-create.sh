@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# cd $APP_ROOT/kodoverdikto
-
 if [ "$RAILS_ENV" == "development" ]
 then
   # Check if postgres already start
@@ -14,6 +12,8 @@ then
   do
     PG_READY=$(pg_isready -h $DB_HOST -U postgres 2>&1 >/dev/null && echo $IS_READY)
     echo "Awaiting postgres start...";
+    echo $(pg_isready -h $DB_HOST -U postgres)
+    echo $PG_READY
 
     sleep $SLEEP_TIME;
     if [ $SLEEP_TIME -lt $MAX_SLEEP_TIME ]

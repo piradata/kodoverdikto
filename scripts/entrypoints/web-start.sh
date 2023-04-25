@@ -2,9 +2,9 @@
 
 # cd $APP_ROOT/kodoverdikto
 
-if [ -f $PIDFILE ]; then
-  rm -f $PIDFILE
+if [ -f "$PIDFILE-web" ]; then
+rm -f "$PIDFILE-web"
 fi
 
 echo "... Starting Rails Server ..."
-bundle exec rails server -p $WEBSITES_PORT -b 0.0.0.0 -P $PIDFILE
+bundle exec rails server -p $WEBSITES_PORT -b 0.0.0.0 -P "$PIDFILE-web"
