@@ -14,6 +14,16 @@ Rails 7
 - spring
 - rubocop
 
+## Roadmap
+- [ ] Add support for https://github.com/judge0/judge0
+    - [ ] 
+    - [ ] Add support for https://github.com/judge0/judge0
+- [ ] Crud for new challenges
+- [ ] figma/design project for whole user experience
+- [ ] Screen to solve challenges
+- [ ] Templated questions
+- [ ] Database relationship analisys
+
 ## How to for devs
 
 #### Project config
