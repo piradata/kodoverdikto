@@ -26,7 +26,9 @@ Rails 7
 
 ## Database
 
-[Database relations on dbdiagram](https://dbdiagram.io/embed/645ba202dca9fb07c4d7f4f4)
+[Database relations on dbdiagram (View)](https://dbdiagram.io/embed/645ba202dca9fb07c4d7f4f4)
+[Database relations on dbdiagram (Edit)](https://dbdiagram.io/d/645ba202dca9fb07c4d7f4f4)
+[DBDocs published version](https://dbdocs.io/piradata/Kodoverdikto)
 
 ## How to for devs
 
