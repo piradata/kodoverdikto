@@ -45,9 +45,9 @@ Make a copy of `.env.sample` and call it `.env`, them write up the following val
 - GOOGLE_CLIENT_SECRET
 - RAILS_SECRET_KEY_BASE
 
-You can get the google codes [here](https://www.google.com/u/0/recaptcha/admin/create).
+You can get the google codes [here](https://console.cloud.google.com/apis/credentials).
 
-And the `RAILS_SECRET_KEY_BASE` can be any string really, but it is recommended to generate it with the command `bin/rails secret`. More info about that [here](https://api.rubyonrails.org/classes/Rails/Application.html) and [here](https://edgeguides.rubyonrails.org/security.html). 
+And the `RAILS_SECRET_KEY_BASE` can be any string really, but it is recommended to generate it with the command `bin/rails secret`. More info about that [here](https://api.rubyonrails.org/classes/Rails/Application.html) and [here](https://edgeguides.rubyonrails.org/security.html).
 
 Obs: If you dont create the `.env` file, the project will fail to open as a container.
 

@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_action :authenticate_user!, except: [:render403, :render404, :render500]
+  before_action :authenticate_user!, except: [:access_denied, :render403, :render404, :render500]
   impersonates :user
 
   def homepage
   end
 
-  def access_denied
+  def access_denied(exception=nil)
     render403
   end
 
