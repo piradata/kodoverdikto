@@ -16,8 +16,8 @@ Rails 7
 
 ## Roadmap
 - [ ] Add support for https://github.com/judge0/judge0
-    - [ ] 
-    - [ ] Add support for https://github.com/judge0/judge0
+    - [ ] create container on docker-compose.yml for judge0 calls
+    - [ ] add support for at least 5 languages
 - [ ] Crud for new challenges
 - [ ] figma/design project for whole user experience
 - [ ] Screen to solve challenges
@@ -26,7 +26,7 @@ Rails 7
 
 ## Database
 
-<iframe width="560" height="315" src='https://dbdiagram.io/embed/645ba202dca9fb07c4d7f4f4'> </iframe>
+[Database relations on dbdiagram](https://dbdiagram.io/embed/645ba202dca9fb07c4d7f4f4)
 
 ## How to for devs
 
