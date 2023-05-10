@@ -24,6 +24,10 @@ Rails 7
 - [ ] Templated questions
 - [ ] Database relationship analisys
 
+## Database
+
+<iframe width="560" height="315" src='https://dbdiagram.io/embed/645ba202dca9fb07c4d7f4f4'> </iframe>
+
 ## How to for devs
 
 #### Project config
@@ -31,6 +35,10 @@ Rails 7
 First set up an ssh key for you with `ssh-keygen -t rsa -b 4096` if you don't have any and clone the project with `git clone`.
 
 Open the project with VS Code.
+
+![image](https://github.com/piradata/kodoverdikto/assets/16529503/92012507-9227-450e-821c-915987bfef3d)
+![image](https://github.com/piradata/kodoverdikto/assets/16529503/86fdcc3e-ff6c-469e-b89f-ce2c5289909b)
+
 
 Make a copy of `.env.sample` and call it `.env`, them write up the following values:
 - GOOGLE_CLIENT_ID
