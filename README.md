@@ -32,6 +32,10 @@ Rails 7
 
 [DBDocs published version](https://dbdocs.io/piradata/Kodoverdikto)
 
+## New docs
+
+https://piradata.gitbook.io/kodoverdikto/
+
 ## How to for devs
 
 #### Project config
