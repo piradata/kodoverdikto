@@ -36,10 +36,6 @@ First set up an ssh key for you with `ssh-keygen -t rsa -b 4096` if you don't ha
 
 Open the project with VS Code.
 
-![image](https://github.com/piradata/kodoverdikto/assets/16529503/92012507-9227-450e-821c-915987bfef3d)
-![image](https://github.com/piradata/kodoverdikto/assets/16529503/86fdcc3e-ff6c-469e-b89f-ce2c5289909b)
-
-
 Make a copy of `.env.sample` and call it `.env`, them write up the following values:
 - GOOGLE_CLIENT_ID
 - GOOGLE_CLIENT_SECRET
