@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Users::UsersController < ApplicationController
   # your authorization method
   before_action :require_admin!, only: [:impersonate, :stop_impersonating]
 
