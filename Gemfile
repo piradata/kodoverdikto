@@ -84,6 +84,9 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", "~> 1.6"
   gem "rspec-rails"
+  # Dependency update and security checks
+  gem "bundler-audit"
+  gem "brakeman"
 end
 
 group :development do
@@ -103,7 +106,6 @@ group :development do
   gem "guard-rspec", require: false
   gem "guard-rubocop"
   gem "guard-bundler", require: false
-  gem "bundler-audit", require: false
   # Code formatter/Styler
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false

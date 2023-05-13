@@ -4,6 +4,7 @@ require:
   - rubocop-rails
   - rubocop-rspec
   - rubocop-performance
+  - rubocop-capybara
 
 AllCops:
   Exclude:
@@ -19,8 +20,11 @@ AllCops:
 Rails:
   Enabled: true
 
-# We don't care about method length, since we check method cyclomatic
-# complexity.
+Style/NumericLiterals:
+  Exclude:
+    - db/schema.rb
+
+# We don't care about method length, since we check method cyclomatic complexity.
 Metrics/ClassLength:
   Enabled: false
 

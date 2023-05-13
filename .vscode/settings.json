@@ -42,6 +42,7 @@
     ".solargraph.yml": "rubocop"
   },
   "cSpell.words": [
+    "cyclomatic",
     "devcontainer",
     "dockercompose",
     "entrypoints",
