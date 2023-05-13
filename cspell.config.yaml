@@ -1,0 +1,13 @@
+version: "0.2"
+ignorePaths: []
+dictionaryDefinitions: []
+dictionaries: []
+words:
+  - postgres
+  - rubocop
+  - sqltools
+ignoreWords: []
+import: []
+language: en,pt,pt-BR
+enableFiletypes:
+  - ruby

@@ -50,5 +50,13 @@
   ],
   "rubyTestExplorer.rspecCommand": "rspec",
   "rubyTestExplorer.minitestCommand": "rake",
-  "solargraph.useBundler": true
+  "solargraph.useBundler": true,
+  "cSpell.autoFormatConfigFile": false,
+  "cSpell.language": "en,pt,pt-BR",
+  "cSpell.enableFiletypes": [
+    "html.erb",
+    "ruby"
+  ],
+  "cSpell.hideAddToDictionaryCodeActions": false,
+  "cSpell.suggestionMenuType": "quickPick"
 }

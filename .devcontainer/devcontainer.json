@@ -2,128 +2,126 @@
 {
   "name": "KodoVerdikto",
   "dockerComposeFile": ["../docker-compose.yml"],
-  // "postCreateCommand": "bundle check | bundle install",
-  // "postCreateCommand": "/kodoverdikto/scripts/entrypoints/web-create.sh",
-  // "postStartCommand": "/kodoverdikto/scripts/entrypoints/web-start.sh",
   "shutdownAction": "stopCompose",
-  // "remoteUser": "vscode",
   "service": "web",
   "overrideCommand": true,
   "workspaceFolder": "/kodoverdikto",
-  // "forwardPorts": [80, 1234, 26162],
-  // Set *default* container specific settings.json values on container create.
-  "settings": {
-    "extensions.ignoreRecommendations": true,
-    "remote.SSH.showLoginTerminal": true,
-    "search.exclude": {
-      "**/.yarn": true,
-      "**/.pnp.*": true,
-      "**/public": true,
-      "**/node_modules": true,
-      "**/docker": true
-    },
-    "editor.formatOnPaste": false,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
-    "files.eol": "\n",
-    "files.trimTrailingWhitespace": true,
-    "terminal.integrated.defaultProfile.linux": "ash",
-    "[ruby]": {
-      "editor.detectIndentation": false,
-      "editor.insertSpaces": true,
-      "editor.tabSize": 2,
-      "editor.defaultFormatter": "castwide.solargraph",
-      "editor.formatOnSave": true
-    },
-    "files.associations": {
-      "*.html.erb": "erb",
-      "**/azure-pipelines.yml": "azure-pipelines",
-      "docker-compose.*.yml": "dockercompose"
-    },
-    "solargraph.autoformat": true,
-    "solargraph.completion": true,
-    "solargraph.definitions": true,
-    "solargraph.diagnostics": true,
-    "solargraph.formatting": true,
-    "solargraph.hover": true,
-    "solargraph.references": true,
-    "solargraph.useBundler": true,
-    "solargraph.symbols": true,
-    "solargraph.rename": true,
-    "solargraph.logLevel": "debug",
-    "ruby.useBundler": true,
-    "ruby.useLanguageServer": true,
-    "ruby.lint": {
-      "rubocop": {
-        "useBundler": true // enable rubocop via bundler
-      }
-    },
-    "ruby.format": "rubocop",
-    "ruby.codeCompletion": "rcodetools",
-    "ruby.intellisense": "rubyLocate",
-    "ruby.rubocop.onSave": true,
-    "ruby.rubocop.configFilePath": "/kodoverdikto/.rubocop.yml",
-    "sqltools.connections": [
-      {
-        "name": "Rails Development Database",
-        "driver": "PostgreSQL",
-        "previewLimit": 50,
-        "server": "postgres",
-        "port": 5432,
-        "database": "kodoverdikto",
-        "username": "kodoverdikto",
-        "password": "SecretPassword"
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "extensions.ignoreRecommendations": true,
+        "remote.SSH.showLoginTerminal": true,
+        "search.exclude": {
+          "**/.yarn": true,
+          "**/.pnp.*": true,
+          "**/public": true,
+          "**/node_modules": true,
+          "**/docker": true
+        },
+        "editor.formatOnPaste": false,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "files.eol": "\n",
+        "files.trimTrailingWhitespace": true,
+        "terminal.integrated.defaultProfile.linux": "ash",
+        "[ruby]": {
+          "editor.detectIndentation": false,
+          "editor.insertSpaces": true,
+          "editor.tabSize": 2,
+          "editor.defaultFormatter": "castwide.solargraph",
+          "editor.formatOnSave": true
+        },
+        "files.associations": {
+          "*.html.erb": "erb",
+          "**/azure-pipelines.yml": "azure-pipelines",
+          "docker-compose.*.yml": "dockercompose"
+        },
+        "solargraph.autoformat": true,
+        "solargraph.completion": true,
+        "solargraph.definitions": true,
+        "solargraph.diagnostics": true,
+        "solargraph.formatting": true,
+        "solargraph.hover": true,
+        "solargraph.references": true,
+        "solargraph.useBundler": true,
+        "solargraph.symbols": true,
+        "solargraph.rename": true,
+        "solargraph.logLevel": "debug",
+        "ruby.useBundler": true,
+        "ruby.useLanguageServer": true,
+        "ruby.lint": {
+          "rubocop": {
+            "useBundler": true // enable rubocop via bundler
+          }
+        },
+        "ruby.format": "rubocop",
+        "ruby.codeCompletion": "rcodetools",
+        "ruby.intellisense": "rubyLocate",
+        "ruby.rubocop.onSave": true,
+        "ruby.rubocop.configFilePath": "/kodoverdikto/.rubocop.yml",
+        "sqltools.connections": [
+          {
+            "name": "Rails Development Database",
+            "driver": "PostgreSQL",
+            "previewLimit": 50,
+            "server": "postgres",
+            "port": 5432,
+            "database": "kodoverdikto",
+            "username": "kodoverdikto",
+            "password": "SecretPassword"
+          },
+          {
+            "name": "Rails Test Database",
+            "driver": "PostgreSQL",
+            "previewLimit": 50,
+            "server": "postgres",
+            "port": 5432,
+            "database": "kodoverdikto_test",
+            "username": "kodoverdikto_test",
+            "password": "SecretPassword"
+          },
+          {
+            "name": "Rails Master Database",
+            "driver": "PostgreSQL",
+            "previewLimit": 50,
+            "server": "postgres",
+            "port": 5432,
+            "database": "postgres",
+            "username": "postgres",
+            "password": "postgres"
+          }
+        ],
+        "material-icon-theme.files.associations": {
+          "docker-compose.devcontainer.yml": "docker",
+          "docker-compose.sonar-scanner.yml": "docker",
+          ".solargraph.yml": "rubocop"
+        }
       },
-      {
-        "name": "Rails Test Database",
-        "driver": "PostgreSQL",
-        "previewLimit": 50,
-        "server": "postgres",
-        "port": 5432,
-        "database": "kodoverdikto_test",
-        "username": "kodoverdikto_test",
-        "password": "SecretPassword"
-      },
-      {
-        "name": "Rails Master Database",
-        "driver": "PostgreSQL",
-        "previewLimit": 50,
-        "server": "postgres",
-        "port": 5432,
-        "database": "postgres",
-        "username": "postgres",
-        "password": "postgres"
-      }
-    ],
-    "material-icon-theme.files.associations": {
-      "docker-compose.devcontainer.yml": "docker",
-      "docker-compose.sonar-scanner.yml": "docker",
-      ".solargraph.yml": "rubocop"
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        "rebornix.ruby",
+        "castwide.solargraph",
+        "misogi.ruby-rubocop",
+        "groksrc.ruby",
+        "vayan.haml",
+        "vortizhe.simple-ruby-erb",
+        "hoovercj.ruby-linter",
+        "miguel-savignano.ruby-symbols",
+        "bung87.rails",
+        "aliariff.vscode-erb-beautif",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg",
+        "eamodio.gitlens",
+        "donjayamanne.githistory",
+        "mhutchie.git-graph",
+        "editorconfig.editorconfig",
+        "wingrunr21.vscode-ruby",
+        "esbenp.prettier-vscode",
+        "seatonjiang.gitmoji-vscode",
+        "streetsidesoftware.code-spell-checker",
+        "yzhang.markdown-all-in-one",
+        "KoichiSasada.vscode-rdbg"
+      ]
     }
-  },
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
-    "rebornix.ruby",
-    "castwide.solargraph",
-    "misogi.ruby-rubocop",
-    "groksrc.ruby",
-    "vayan.haml",
-    "vortizhe.simple-ruby-erb",
-    "hoovercj.ruby-linter",
-    "miguel-savignano.ruby-symbols",
-    "bung87.rails",
-    "aliariff.vscode-erb-beautif",
-    "mtxr.sqltools",
-    "mtxr.sqltools-driver-pg",
-    "eamodio.gitlens",
-    "donjayamanne.githistory",
-    "mhutchie.git-graph",
-    "editorconfig.editorconfig",
-    "wingrunr21.vscode-ruby",
-    "esbenp.prettier-vscode",
-    "seatonjiang.gitmoji-vscode",
-    "streetsidesoftware.code-spell-checker",
-    "yzhang.markdown-all-in-one",
-    "KoichiSasada.vscode-rdbg"
-  ]
+  }
 }
