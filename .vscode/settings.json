@@ -45,6 +45,7 @@
     "devcontainer",
     "dockercompose",
     "entrypoints",
+    "Hotwire",
     "kodoverdikto",
     "solargraph"
   ],

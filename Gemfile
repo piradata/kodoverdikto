@@ -76,9 +76,9 @@ gem "audited"
 gem "image_processing", "~> 1.2"
 
 # Others
-gem 'select2-rails'
-gem 'simple_form'
-gem 'render_async'
+gem "select2-rails"
+gem "simple_form"
+gem "render_async"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -102,7 +102,8 @@ group :development do
   gem "guard"
   gem "guard-rspec", require: false
   gem "guard-rubocop"
-  gem 'guard-bundler', require: false
+  gem "guard-bundler", require: false
+  gem "bundler-audit", require: false
   # Code formatter/Styler
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
