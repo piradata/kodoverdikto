@@ -58,4 +58,3 @@ jobs:
         run: bundle exec brakeman --skip-files /docker/ -q -w2
       - name: Lint Ruby files
         run: bin/rubocop --parallel
-# deploy

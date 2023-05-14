@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
   before_action :authenticate_user!, except: [:access_denied, :render403, :render404, :render500]
   impersonates :user
 
