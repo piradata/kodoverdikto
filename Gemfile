@@ -54,10 +54,6 @@ gem "tzinfo-data"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-# Use Sass to process CSS
-gem "sassc-rails"
-# gem "sass-rails"
-
 # omniauth auth
 gem "omniauth"
 gem "omniauth-google-oauth2"
@@ -79,6 +75,15 @@ gem "image_processing", "~> 1.2"
 gem "select2-rails"
 gem "simple_form"
 gem "render_async"
+
+# JS Compressor/Processor
+# gem "closure-compiler"
+gem "terser"
+
+# CSS Compressor/Processor
+gem "sassc-rails"
+# gem "sass-rails"
+# gem "yui-compressor"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

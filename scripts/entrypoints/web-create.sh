@@ -58,10 +58,10 @@ then
 else
   echo "Using bundler under production mode"
   # Start ssh server on container
-  ssh-keygen -A
-  /usr/sbin/sshd
+  # ssh-keygen -A
+  # /usr/sbin/sshd
   # Run update of process
-  rails r lib/update_processes.rb
+  # rails r lib/update_processes.rb
   # Migrate database
   rails db:migrate
 fi

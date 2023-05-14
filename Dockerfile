@@ -3,12 +3,17 @@ FROM ruby:${RUBY_VERSION}
 
 ### Define ENV Variables
 ENV APP_ROOT /kodoverdikto
+ENV PATH $APP_ROOT/bin:$PATH
 
-ARG BUNDLER_VERSION=2.4.1
+### Configure bundler
 ENV BUNDLE_PATH /usr/local/bundle
-# ENV GEM_PATH $BUNDLE_PATH
-# ENV BUNDLE_BIN $BUNDLE_PATH
-# ENV PATH $BUNDLE_PATH/bin:$BUNDLE_PATH/gems/bin:$PATH
+ENV GEM_PATH $BUNDLE_PATH
+ENV BUNDLE_BIN $BUNDLE_PATH
+ENV PATH $BUNDLE_PATH/bin:$BUNDLE_PATH/gems/bin:$PATH
+ARG BUNDLER_VERSION=2.3.23
+
+# Define container workdir location
+WORKDIR $APP_ROOT
 
 # Install system dependencies required both at runtime and build time
 # tzdata (https://tips.tutorialhorizon.com/2017/08/29/tzinfodatasourcenotfound-when-using-alpine-with-docker/)
@@ -23,9 +28,6 @@ RUN apk add --update --no-cache --virtual run-dependencies \
     shared-mime-info \
     sqlite-dev \
     tzdata
-
-# Define container workdir location
-WORKDIR $APP_ROOT
 
 ### Copy gemfiles
 COPY Gemfile* ./
@@ -51,31 +53,37 @@ COPY ./ $APP_ROOT
 ### Copy JS/React packages
 # COPY package.json yarn.lock ./
 
-# Run assets pipeline
+# Assets pipeline
 # RUN apk add --update --no-cache --virtual node-build-dependencies nodejs yarn && \
 #     yarn install --frozen-lockfile --check-files --silent --production && \
 #     yarn cache clean && \
+#     rm -rf node_modules && \
+#     apk del node-build-dependencies
+
+# Assets pipeline
 RUN apk add --update --no-cache --virtual node-build-dependencies nodejs && \
     RAILS_ENV=production bundle exec rails assets:clean && \
-    RAILS_ENV=production bundle exec rails assets:precompile
+    RAILS_ENV=production bundle exec rails assets:precompile && \
     # RAILS_ENV=production bundle exec rails webpacker:compile && \
-    # rm -rf node_modules && \
-    # apk del node-build-dependencies
+    rm -rf node_modules && \
+    apk del node-build-dependencies
 
 ### Configure SSH access via azure
 # Install OpenSSH and set the password for root to "Docker!". In this example, "apk add" is the install instruction for an Alpine Linux-based image.
-RUN apk add --update --no-cache openssh-server && \
-    echo "root:Docker!" | chpasswd && \
-    mkdir /var/run/sshd
+# RUN apk add --update --no-cache openssh-server && \
+#     echo "root:Docker!" | chpasswd && \
+#     mkdir /var/run/sshd
 
 # Copy the sshd_config file to the /etc/ssh/ directory
-COPY resources/ssh/sshd_config /etc/ssh/
+# COPY resources/ssh/sshd_config /etc/ssh/
 
 # Open port 2222 for SSH access
-EXPOSE 2222
+# EXPOSE 2222
 
 # Open port 80 for HTTP access
 EXPOSE 80
+# Open port 443 and 8443 for HTTPS access
+EXPOSE 443 8443
 
-ENTRYPOINT [ "/app/entrypoints/web-create.sh" ]
-CMD [ "/app/entrypoints/web-start.sh" ]
+ENTRYPOINT [ "/kodoverdikto/scripts/entrypoints/web-create.sh" ]
+CMD [ "/kodoverdikto/scripts/entrypoints/web-start.sh" ]

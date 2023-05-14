@@ -121,6 +121,7 @@ GEM
     diff-lcs (1.5.0)
     e2mmap (0.1.0)
     erubi (1.12.0)
+    execjs (2.8.1)
     faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
@@ -465,6 +466,8 @@ GEM
       rbs
       syntax_tree (>= 2.0.1)
     temple (0.10.0)
+    terser (1.1.15)
+      execjs (>= 0.3.0, < 3)
     thor (1.2.2)
     tilt (2.1.0)
     timeout (0.3.2)
@@ -549,6 +552,7 @@ DEPENDENCIES
   sprockets-rails
   stackprof
   stimulus-rails
+  terser
   turbo-rails
   tzinfo-data
   web-console

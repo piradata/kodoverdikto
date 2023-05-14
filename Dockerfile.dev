@@ -5,10 +5,17 @@ FROM ruby:${RUBY_VERSION}
 ENV APP_ROOT /kodoverdikto
 ENV PATH $APP_ROOT/bin:$PATH
 
+### Configure bundler
+ENV BUNDLE_PATH /usr/local/bundle
+ENV GEM_PATH $BUNDLE_PATH
+ENV BUNDLE_BIN $BUNDLE_PATH
+ENV PATH $BUNDLE_PATH/bin:$BUNDLE_PATH/gems/bin:$PATH
+ARG BUNDLER_VERSION=2.3.23
+
 # Define container workdir location
 WORKDIR $APP_ROOT
 
-# Add ssh to Devcontainer
+# Add ssh to Devcontainer (DEV ONLY)
 RUN apk add --update --no-cache openssh
 
 ### Update an install packages dependencies
@@ -33,12 +40,6 @@ RUN apk add --update --no-cache make g++ build-base
 #install whereis pkg
 RUN apk add --update --no-cache util-linux
 
-### Configure bundler
-ENV BUNDLE_PATH /usr/local/bundle
-ENV GEM_PATH $BUNDLE_PATH
-ENV BUNDLE_BIN $BUNDLE_PATH
-ENV PATH $BUNDLE_PATH/bin:$BUNDLE_PATH/gems/bin:$PATH
-ARG BUNDLER_VERSION=2.3.23
 # RUN gem update --system && \
 RUN gem install bundler -v $BUNDLER_VERSION --verbose && \
     bundle config set deployment 'false' && \
