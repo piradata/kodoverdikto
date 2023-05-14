@@ -3,12 +3,16 @@ ignorePaths: []
 dictionaryDefinitions: []
 dictionaries: []
 words:
+  - autofetch
+  - Meslo
   - omniauth
   - postgres
   - rubocop
   - sassc
   - sendfile
   - sqltools
+  - Sysnative
+  - windir
 ignoreWords: []
 import: []
 language: en,pt,pt-BR
