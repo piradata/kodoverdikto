@@ -26,7 +26,8 @@
         "WEB_CONCURRENCY": 0
       }
     },
-    // TODO: Make this work,=
+    // TODO: Make this work
+    // https://inspirnathan.com/posts/145-debug-ruby-on-rails-in-vscode/
     // {
     //   "type": "rdbg",
     //   "name": "Attach with rdbg",
