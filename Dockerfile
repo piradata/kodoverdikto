@@ -19,7 +19,6 @@ WORKDIR $APP_ROOT
 # tzdata (https://tips.tutorialhorizon.com/2017/08/29/tzinfodatasourcenotfound-when-using-alpine-with-docker/)
 # shared-mime-info -- Dependency from gem 'mimemagic' (https://github.com/mimemagicrb/mimemagic#dependencies)
 RUN apk add --update --no-cache --virtual run-dependencies \
-    freetds-dev \
     git \
     gnupg \
     libaio \
@@ -29,12 +28,10 @@ RUN apk add --update --no-cache --virtual run-dependencies \
     sqlite-dev \
     tzdata
 
-### Copy gemfiles
-COPY Gemfile* ./
-
-### Configure bundler
-# Install system dependencies required to build some Ruby gems
+### Configure bundler for production (Copy gemfiles and install gems)
+# build-dependencies are deleted after gems instalation to optimize image size
 # Some gems need build, example 'bcrypt', 'json', 'jaro_winkler' --> (dependency of development gem 'solargraph')
+COPY Gemfile* ./
 RUN apk add --update --no-cache --virtual build-dependencies make g++ build-base && \
     gem update --system && \
     gem install bundler -v $BUNDLER_VERSION --no-document && \
@@ -44,41 +41,19 @@ RUN apk add --update --no-cache --virtual build-dependencies make g++ build-base
     bundle check || bundle install && \
     apk del build-dependencies
 
+### Define app version
 ARG APP_VERSION=untagged
 ENV APP_VERSION=${APP_VERSION}
 
-# Add code to container
+###### PROD ONLY
+# Add code to container (only production, as in development the code is cached on runtime as a volume)
 COPY ./ $APP_ROOT
-
-### Copy JS/React packages
-# COPY package.json yarn.lock ./
-
-# Assets pipeline
-# RUN apk add --update --no-cache --virtual node-build-dependencies nodejs yarn && \
-#     yarn install --frozen-lockfile --check-files --silent --production && \
-#     yarn cache clean && \
-#     rm -rf node_modules && \
-#     apk del node-build-dependencies
-
-# Assets pipeline
+# Assets pipeline (only production, as in development js files are dinamically recompiled) (nodejs is needed by terser to compress js files)
 RUN apk add --update --no-cache --virtual node-build-dependencies nodejs && \
     RAILS_ENV=production bundle exec rails assets:clean && \
     RAILS_ENV=production bundle exec rails assets:precompile && \
-    # RAILS_ENV=production bundle exec rails webpacker:compile && \
     rm -rf node_modules && \
     apk del node-build-dependencies
-
-### Configure SSH access via azure
-# Install OpenSSH and set the password for root to "Docker!". In this example, "apk add" is the install instruction for an Alpine Linux-based image.
-# RUN apk add --update --no-cache openssh-server && \
-#     echo "root:Docker!" | chpasswd && \
-#     mkdir /var/run/sshd
-
-# Copy the sshd_config file to the /etc/ssh/ directory
-# COPY resources/ssh/sshd_config /etc/ssh/
-
-# Open port 2222 for SSH access
-# EXPOSE 2222
 
 # Open port 80 for HTTP access
 EXPOSE 80

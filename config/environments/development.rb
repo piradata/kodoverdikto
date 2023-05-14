@@ -50,6 +50,9 @@ Rails.application.configure do
   # Generate sourcemap for js files
   config.assets.debug = true
 
+  # Don't mix assets with production by mistake
+  config.assets.prefix = "/dev-assets"
+
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
 

@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   impersonates :user
 
   def homepage
+    Rails.logger.debug 'hello!'
   end
 
   def access_denied(exception=nil)
@@ -22,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render500(_arg = nil)
-    render "error/error_card", formats: [:html], status: :internal_server_error, locals: { error_code: 500, icon: ":("}
+    render "error/error_card", formats: [:html], status: :internal_server_error, locals: { error_code: 500, icon: "😿"}
   end
 
 end
