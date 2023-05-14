@@ -42,6 +42,14 @@
     ".solargraph.yml": "rubocop"
   },
   "cSpell.words": [
+    "actioncable",
+    "actionmailer",
+    "actionpack",
+    "actionview",
+    "activejob",
+    "activemodel",
+    "activerecord",
+    "activestorage",
     "cyclomatic",
     "devcontainer",
     "dockercompose",
