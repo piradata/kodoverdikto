@@ -1,10 +1,10 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.3"
+ruby "3.2.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.4", ">= 7.0.4.1"
+gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -31,7 +31,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
+gem "redis"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 gem "kredis"
@@ -46,7 +46,7 @@ gem "devise"
 gem "activeadmin"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data"
@@ -76,14 +76,12 @@ gem "select2-rails"
 gem "simple_form"
 gem "render_async"
 
-# JS Compressor/Processor
-# gem "closure-compiler"
-gem "terser"
-
-# CSS Compressor/Processor
-gem "sassc-rails"
-# gem "sass-rails"
-# gem "yui-compressor"
+group :production do
+  # JS Compressor/Processor
+  gem "terser"
+  # CSS Compressor/Processor
+  gem "sassc-rails"
+end
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -119,7 +117,7 @@ group :development do
   gem "spring-commands-rubocop"
   gem "prettier"
   # Code intellisense
-  gem "solargraph"
+  gem "solargraph-rails"
 end
 
 group :test do
@@ -128,5 +126,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-

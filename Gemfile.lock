@@ -440,6 +440,9 @@ GEM
       thor (~> 1.0)
       tilt (~> 2.0)
       yard (~> 0.9, >= 0.9.24)
+    solargraph-rails (1.1.0)
+      activesupport
+      solargraph
     spring (4.1.1)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -508,7 +511,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   audited
-  bcrypt (~> 3.1.7)
+  bcrypt
   bootsnap
   brakeman
   bundler-audit
@@ -532,8 +535,8 @@ DEPENDENCIES
   prettier
   puma (~> 5.0)
   rack-mini-profiler
-  rails (~> 7.0.4, >= 7.0.4.1)
-  redis (~> 4.0)
+  rails (~> 7.0.4, >= 7.0.4.3)
+  redis
   render_async
   rspec-rails
   rubocop-discourse
@@ -545,7 +548,7 @@ DEPENDENCIES
   selenium-webdriver
   sidekiq
   simple_form
-  solargraph
+  solargraph-rails
   spring
   spring-commands-rspec
   spring-commands-rubocop
@@ -559,7 +562,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.1.3p20
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.3.23

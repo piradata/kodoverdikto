@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=3.1.3-alpine3.16
+ARG RUBY_VERSION=3.2.2-alpine3.18
 FROM ruby:${RUBY_VERSION}
 
 ### Define ENV Variables

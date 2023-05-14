@@ -54,8 +54,11 @@
     "devcontainer",
     "dockercompose",
     "entrypoints",
+    "gitbook",
     "Hotwire",
     "kodoverdikto",
+    "rdoc",
+    "scannerwork",
     "solargraph"
   ],
   "rubyTestExplorer.rspecCommand": "rspec",

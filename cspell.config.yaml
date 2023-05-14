@@ -6,6 +6,8 @@ words:
   - omniauth
   - postgres
   - rubocop
+  - sassc
+  - sendfile
   - sqltools
 ignoreWords: []
 import: []
