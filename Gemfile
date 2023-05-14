@@ -85,7 +85,6 @@ end
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", "~> 1.6"
   gem "rspec-rails"
   # Dependency update and security checks
   gem "bundler-audit"
@@ -118,6 +117,8 @@ group :development do
   gem "prettier"
   # Code intellisense
   gem "solargraph-rails"
+  # Debugging
+  gem "debug"
 end
 
 group :test do

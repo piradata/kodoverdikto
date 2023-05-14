@@ -328,7 +328,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rbs (2.8.4)
-    redis (4.8.1)
+    redis (5.0.6)
+      redis-client (>= 0.9.0)
     redis-client (0.14.1)
       connection_pool
     regexp_parser (2.8.0)
@@ -516,7 +517,7 @@ DEPENDENCIES
   brakeman
   bundler-audit
   capybara
-  debug (~> 1.6)
+  debug
   devise
   guard
   guard-bundler
@@ -565,4 +566,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.3.23
+   2.4.10

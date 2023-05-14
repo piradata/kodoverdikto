@@ -17,8 +17,21 @@
         "-b",
         "0.0.0.0",
         "-P",
-        "${env:PIDFILE}"
-      ]
-    }
+        "${env:PIDFILE}",
+      ],
+      // set RAILS_MIN_THREADS to 1 and use puma in single mode instead of cluster mode to stop workers from terminating
+      "env": {
+        "RAILS_MIN_THREADS": 1,
+        "RAILS_MAX_THREADS": 1,
+        "WEB_CONCURRENCY": 0
+      }
+    },
+    // TODO: Make this work,=
+    // {
+    //   "type": "rdbg",
+    //   "name": "Attach with rdbg",
+    //   "request": "attach",
+    //   "rdbgPath": "/usr/local/bundle/rdbg",
+    // }
   ]
 }
