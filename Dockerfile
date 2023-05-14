@@ -62,7 +62,6 @@ RUN apk add --update --no-cache --virtual node-build-dependencies nodejs && \
     # rm -rf node_modules && \
     # apk del node-build-dependencies
 
-
 ### Configure SSH access via azure
 # Install OpenSSH and set the password for root to "Docker!". In this example, "apk add" is the install instruction for an Alpine Linux-based image.
 RUN apk add --update --no-cache openssh-server && \
