@@ -2,7 +2,10 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "run rails server",
+      "label": "Run Rails Server",
+      "runOptions": {
+        "runOn": "folderOpen",
+      },
       "options": {
         "statusbar": {
           "label" : "$(play)Rails S",
@@ -24,12 +27,12 @@
       ],
       "problemMatcher": [],
       "group": {
-        "kind": "build",
-        "isDefault": true
+        "kind": "none",
+        "isDefault": false
       }
     },
     {
-      "label": "run rails console",
+      "label": "Run Rails Console",
       "options": {
         "statusbar": {
           "label" : "$(beaker)Rails C",
@@ -46,7 +49,7 @@
       "problemMatcher": [],
       "group": {
         "kind": "none",
-        "isDefault": true
+        "isDefault": false
       }
     },
   ]

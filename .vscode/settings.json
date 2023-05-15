@@ -11,7 +11,6 @@
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
   "diffEditor.ignoreTrimWhitespace": false,
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
   "[ruby]": {
     "editor.detectIndentation": false,
     "editor.insertSpaces": true,
@@ -41,6 +40,7 @@
     ".solargraph.yml": "rubocop"
   },
   "cSpell.words": [
+    "actboy",
     "actioncable",
     "actionmailer",
     "actionpack",
@@ -51,7 +51,9 @@
     "activestorage",
     "aliariff",
     "beautif",
+    "brazilian",
     "castwide",
+    "connorshea",
     "cyclomatic",
     "devcontainer",
     "dockercompose",
@@ -63,6 +65,7 @@
     "githistory",
     "gitmoji",
     "groksrc",
+    "Gruntfuggly",
     "haml",
     "hoovercj",
     "Hotwire",
@@ -73,14 +76,17 @@
     "mtxr",
     "PIDFILE",
     "pids",
+    "railties",
     "rcodetools",
     "rdbg",
     "rdoc",
     "rebornix",
+    "redhat",
     "Sasada",
     "savignano",
     "scannerwork",
     "seatonjiang",
+    "sidekiq",
     "solargraph",
     "vayan",
     "vortizhe",
@@ -92,10 +98,7 @@
   "solargraph.useBundler": true,
   "cSpell.autoFormatConfigFile": false,
   "cSpell.language": "en,pt,pt-BR",
-  "cSpell.enableFiletypes": [
-    "html.erb",
-    "ruby"
-  ],
+  "cSpell.enableFiletypes": ["html.erb", "ruby"],
   "cSpell.hideAddToDictionaryCodeActions": false,
   "cSpell.suggestionMenuType": "quickPick",
   "terminal.integrated.profiles.linux": {
@@ -120,6 +123,5 @@
       "path": "pwsh",
       "icon": "terminal-powershell"
     }
-  },
-  "tasksStatusbar.taskLabelFilter": "dev|watch|run rails server|run rails console"
+  }
 }

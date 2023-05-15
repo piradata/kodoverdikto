@@ -119,7 +119,13 @@
         "seatonjiang.gitmoji-vscode",
         "streetsidesoftware.code-spell-checker",
         "yzhang.markdown-all-in-one",
-        "KoichiSasada.vscode-rdbg"
+        "KoichiSasada.vscode-rdbg",
+        "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+        "connorshea.vscode-ruby-test-adapter",
+        "Gruntfuggly.todo-tree",
+        "redhat.vscode-yaml",
+        "actboy168.tasks",
+        "GitHub.vscode-github-actions"
       ]
     }
   }

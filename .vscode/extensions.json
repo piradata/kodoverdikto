@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "ms-vscode-remote.vscode-remote-extensionpack",
-    "walkme.ruby-extension-pack",
     "hoovercj.ruby-linter",
     "miguel-savignano.ruby-symbols",
     "eamodio.gitlens",
@@ -12,13 +11,30 @@
     "seatonjiang.gitmoji-vscode",
     "streetsidesoftware.code-spell-checker",
     "yzhang.markdown-all-in-one",
-    "ms-vscode.azure-account",
-    "ms-dotnettools.vscode-dotnet-runtime",
-    "ms-vscode.vscode-node-azure-pack",
-    "arcanis.vscode-zipfs",
     "koichisasada.vscode-rdbg",
     "connorshea.vscode-ruby-test-adapter",
     "actboy168.tasks",
-    "streetsidesoftware.code-spell-checker-portuguese-brazilian"
+    "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+    "yandeu.five-server",
+    "ms-vsliveshare.vsliveshare",
+    "lostintangent.vsls-whiteboard",
+    "hbenl.vscode-test-explorer-liveshare",
+    "shd101wyy.markdown-preview-enhanced",
+    "github.vscode-github-actions",
+    "rebornix.ruby",
+    "bung87.rails",
+    "castwide.solargraph",
+    "misogi.ruby-rubocop",
+    "vortizhe.simple-ruby-erb",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-pg",
+    "ms-vscode.test-adapter-converter",
+    "hbenl.vscode-test-explorer",
+    "gruntfuggly.todo-tree",
+    "bung87.vscode-gemfile",
+    "redhat.vscode-yaml",
+    "vayan.haml",
+    "groksrc.ruby",
+    "sianglim.slim"
   ]
 }
