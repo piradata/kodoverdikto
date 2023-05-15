@@ -120,5 +120,6 @@
       "path": "pwsh",
       "icon": "terminal-powershell"
     }
-  }
+  },
+  "tasksStatusbar.taskLabelFilter": "dev|watch|run rails server|run rails console"
 }

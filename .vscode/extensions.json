@@ -7,7 +7,6 @@
     "eamodio.gitlens",
     "donjayamanne.githistory",
     "mhutchie.git-graph",
-    "editorconfig.editorconfig",
     "wingrunr21.vscode-ruby",
     "esbenp.prettier-vscode",
     "seatonjiang.gitmoji-vscode",
@@ -18,6 +17,8 @@
     "ms-vscode.vscode-node-azure-pack",
     "arcanis.vscode-zipfs",
     "koichisasada.vscode-rdbg",
-    "connorshea.vscode-ruby-test-adapter"
+    "connorshea.vscode-ruby-test-adapter",
+    "actboy168.tasks",
+    "streetsidesoftware.code-spell-checker-portuguese-brazilian"
   ]
 }

@@ -3,6 +3,12 @@
   "tasks": [
     {
       "label": "run rails server",
+      "options": {
+        "statusbar": {
+          "label" : "$(play)Rails S",
+          "color" : "#31eb31"
+        }
+      },
       "type": "shell",
       "command": "bundle",
       "args": [
@@ -24,6 +30,12 @@
     },
     {
       "label": "run rails console",
+      "options": {
+        "statusbar": {
+          "label" : "$(beaker)Rails C",
+          "color" : "#c2ae00"
+        }
+      },
       "type": "shell",
       "command": "bundle",
       "args": [
