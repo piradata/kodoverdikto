@@ -21,6 +21,6 @@ reporters:
   - rubocop
   # - require_not_found
 plugins:
-  - solargraph-arc # Need solargraph ~> 0.44.2 https://github.com/alisnic/solargraph-arc
+  - solargraph-rails # Need solargraph ~> 0.44.2 https://github.com/alisnic/solargraph-arc
 require_paths: []
 max_files: 5000
