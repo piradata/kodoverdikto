@@ -2,14 +2,37 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Install Gems",
+      "isBackground": true,
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false,
+        "close": true
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "type": "shell",
+      "command": "bundle check || bundle install",
+      "problemMatcher": [],
+      "group": {
+        "kind": "none",
+        "isDefault": false
+      }
+    },
+    {
       "label": "Run Rails Server",
       "runOptions": {
-        "runOn": "folderOpen",
+        "runOn": "folderOpen"
       },
       "options": {
         "statusbar": {
-          "label" : "$(play)Rails S",
-          "color" : "#31eb31"
+          "label": "$(play)Rails S",
+          "color": "#31eb31"
         }
       },
       "type": "shell",
@@ -35,22 +58,18 @@
       "label": "Run Rails Console",
       "options": {
         "statusbar": {
-          "label" : "$(beaker)Rails C",
-          "color" : "#c2ae00"
+          "label": "$(beaker)Rails C",
+          "color": "#c2ae00"
         }
       },
       "type": "shell",
       "command": "bundle",
-      "args": [
-        "exec",
-        "rails",
-        "console"
-      ],
+      "args": ["exec", "rails", "console"],
       "problemMatcher": [],
       "group": {
         "kind": "none",
         "isDefault": false
       }
-    },
+    }
   ]
 }
