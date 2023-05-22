@@ -24,6 +24,14 @@ Rails 7
 - [ ] Templated questions
 - [ ] Database relationship analisys
 
+
+## Other platforms
+https://github.com/DMOJ/online-judge
+
+https://github.com/DOMjudge/domjudge
+
+https://github.com/NikolayIT/OpenJudgeSystem
+
 ## Database
 
 [Database relations on dbdiagram (View)](https://dbdiagram.io/embed/645ba202dca9fb07c4d7f4f4)
