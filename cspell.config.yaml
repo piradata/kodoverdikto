@@ -4,14 +4,20 @@ dictionaryDefinitions: []
 dictionaries: []
 words:
   - autofetch
+  - datetime
   - Meslo
   - omniauth
+  - omniauthable
+  - plpgsql
   - postgres
   - rubocop
   - sassc
   - sendfile
   - sqltools
   - Sysnative
+  - timeoutable
+  - uuid
+  - validatable
   - windir
 ignoreWords: []
 import: []

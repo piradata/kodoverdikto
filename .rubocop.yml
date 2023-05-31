@@ -22,7 +22,10 @@ Rails:
 
 Style/NumericLiterals:
   Exclude:
-    - db/schema.rb
+    - schema.rb
+
+RSpec/FilePath:
+  Enabled: false
 
 # We don't care about method length, since we check method cyclomatic complexity.
 Metrics/ClassLength:
