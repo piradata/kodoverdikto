@@ -5,4 +5,4 @@ if [ -f "$PIDFILE-sidekiq" ]; then
 fi
 
 echo "... Starting Sidekiq Server ..."
-bundle exec sidekiq -q default -q mailers -q import_model -P "$PIDFILE-sidekiq"
+bundle exec sidekiq -q default -q mailers
