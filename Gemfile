@@ -63,7 +63,7 @@ gem "omniauth-rails_csrf_protection"
 # gem "cancancan"
 
 # Impersonation
-gem "pretender"
+gem "pretender", ">= 0.5.0"
 
 # Auditoring
 gem "audited"
