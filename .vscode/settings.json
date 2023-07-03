@@ -94,7 +94,7 @@
     "wingrunr",
     "yzhang"
   ],
-  "rubyTestExplorer.rspecCommand": "rspec",
+  "rubyTestExplorer.rspecCommand": "spring rspec",
   "rubyTestExplorer.minitestCommand": "rake",
   "solargraph.useBundler": true,
   "cSpell.autoFormatConfigFile": false,
