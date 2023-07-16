@@ -43,7 +43,7 @@ gem "sidekiq"
 gem "devise"
 
 # Use ActiveAdmin for admin interface
-gem "activeadmin", ">= 2.14.0"
+gem "activeadmin", ">= 3.0.0"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt"
