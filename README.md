@@ -32,6 +32,8 @@ https://github.com/DOMjudge/domjudge
 
 https://github.com/NikolayIT/OpenJudgeSystem
 
+https://gitlab.c3sl.ufpr.br/maratona-ufpr/jughisto
+
 ## Database
 
 [Database relations on dbdiagram (View)](https://dbdiagram.io/embed/645ba202dca9fb07c4d7f4f4)
