@@ -550,7 +550,7 @@ DEPENDENCIES
   prettier
   puma (~> 6.3, >= 6.3.1)
   rack-mini-profiler
-  rails (~> 7.0.5, >= 7.0.5.1)
+  rails (~> 7.0.7, >= 7.0.7.1)
   redis
   render_async
   rspec-rails
