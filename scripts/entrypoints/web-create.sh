@@ -63,6 +63,10 @@ else
   # Run update of process
   # rails r lib/update_processes.rb
   # Migrate database
+  bundle check
+
+  echo AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
   rails db:migrate
 fi
 

@@ -37,9 +37,11 @@ RUN apk add --update --no-cache --virtual build-dependencies make g++ build-base
     gem install bundler -v $BUNDLER_VERSION --no-document && \
     bundle config set deployment 'true' && \
     bundle config set without 'development test' && \
-    bundle config set jobs 20 && \
-    bundle check || bundle install && \
-    apk del build-dependencies
+    bundle config set jobs 20
+
+RUN bundle check || bundle install
+
+RUN apk del build-dependencies
 
 ###### PROD ONLY
 # Add code to container (only production, as in development the code is cached on runtime as a volume)
@@ -48,8 +50,9 @@ COPY ./ $APP_ROOT
 RUN apk add --update --no-cache --virtual node-build-dependencies nodejs && \
     RAILS_ENV=production bundle exec rails assets:clean && \
     RAILS_ENV=production bundle exec rails assets:precompile && \
-    rm -rf node_modules && \
-    apk del node-build-dependencies
+    rm -rf node_modules
+
+# RUN apk del node-build-dependencies
 
 ### Define app version
 ARG COMMIT_HASH=untagged
