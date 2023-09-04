@@ -258,7 +258,14 @@ stages:
               command: login
 
           - bash: |
-              docker build -f './Dockerfile' . -t '$(registry)/$(imageName):$(tag)' -t '$(registry)/$(imageName):$(Build.BuildId)' --build-arg APP_VERSION='$(appVersion)' --build-arg VCS_REF='$(Build.SourceVersion)' --build-arg VCS_URL='$(Build.Repository.Uri)' --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from='$(registry)/$(imageName):$(tag)'
+              docker build -f './Dockerfile' . \
+              -t '$(registry)/$(imageName):$(tag)' \
+              -t '$(registry)/$(imageName):$(Build.BuildId)' \
+              --build-arg COMMIT_HASH='$(appVersion)' \
+              --build-arg VCS_REF='$(Build.SourceVersion)' \
+              --build-arg VCS_URL='$(Build.Repository.Uri)' \
+              --build-arg BUILDKIT_INLINE_CACHE=1 \
+              --cache-from='$(registry)/$(imageName):$(tag)'
             displayName: Build image
             continueOnError: false
 

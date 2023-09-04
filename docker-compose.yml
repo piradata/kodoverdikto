@@ -2,10 +2,8 @@ version: "3.6"
 
 volumes:
   redis_store:
-    name: redis_store
     driver: local
   postgres_data:
-    name: postgres_data
     driver: local
 
 services:
@@ -58,9 +56,15 @@ services:
       - redis_store:/data
 
   sidekiq:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+      network: host
+      args:
+        USERNAME: vscode
     image: kodoverdikto:latest
-    restart: on-failure:5
     user: vscode
+    restart: on-failure:5
     healthcheck:
       test: ps aux | grep '[s]idekiq'
       interval: 1s

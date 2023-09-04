@@ -55,6 +55,10 @@ RUN apk add --update --no-cache --virtual node-build-dependencies nodejs && \
     rm -rf node_modules && \
     apk del node-build-dependencies
 
+### Define app version
+ARG COMMIT_HASH=untagged
+ENV COMMIT_HASH=${COMMIT_HASH}
+
 # Open port 80 for HTTP access
 EXPOSE 80
 # Open port 443 and 8443 for HTTPS access

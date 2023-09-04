@@ -37,10 +37,6 @@ RUN apk add --update --no-cache --virtual build-dependencies make g++ build-base
     bundle config set deployment 'false' && \
     bundle config set jobs 20
 
-### Define app version
-ARG APP_VERSION=untagged
-ENV APP_VERSION=${APP_VERSION}
-
 ###### DEV ONLY
 # Install packages usefull for development
 # util-linux install whereis package that is useful to debug bin paths
@@ -50,6 +46,7 @@ RUN apk add --update --no-cache --virtual dev-dependencies \
     util-linux \
     less  \
     openssh
+
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 # https://aka.ms/vscode-remote/containers/non-root#_change-the-uidgid-of-an-existing-container-user
 ARG USERNAME=root
@@ -62,6 +59,10 @@ RUN if [[ "$USERNAME" != "root" ]] ; then \
     else echo "Running with $USERNAME user" ; \
     fi
 USER $USERNAME
+
+### Define app version
+ARG COMMIT_HASH=untagged
+ENV COMMIT_HASH=${COMMIT_HASH}
 
 # Open port 80 for HTTP access
 EXPOSE 80

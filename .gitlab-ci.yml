@@ -1,0 +1,93 @@
+stages:
+  - config
+  - build
+  - deploy
+
+variables:
+  AWS_REGION: us-east-1
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+  GIT_SUBMODULE_FORCE_HTTPS: "true"
+
+debug:
+  stage: config
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - echo "$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA"
+    - echo "Starting pipeline"
+  only:
+    - homolog
+    - main
+
+.build-redmine:
+  image: amazon/aws-cli
+  stage: build
+  services:
+    - docker:dind
+  variables:
+    DOCKER_REGISTRY: $TF_VAR_AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+    APP_NAME: origem_redmine_ecr
+  before_script:
+    - job_started_at=$(echo $CI_JOB_STARTED_AT | sed -e "s/://g")
+    - job_started_at=$(echo $job_started_at | sed -e "s/-//g")
+    - yum -y install git
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+    - git config --global url."https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.visagio.com/".insteadOf "https://gitlab.visagio.com"
+    - git submodule init
+    - git submodule sync
+    - git submodule update
+  script:
+    - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+    - |
+      docker build . \
+      -t $DOCKER_REGISTRY/$APP_NAME:latest \
+      -t $DOCKER_REGISTRY/$APP_NAME:$job_started_at \
+      --build-arg GIT_COMMIT="$CI_COMMIT_REF_NAME-$CI_COMMIT_SHORT_SHA" \
+      --build-arg BUILDKIT_INLINE_CACHE=1 \
+      --cache-from="$DOCKER_REGISTRY/$APP_NAME:latest"
+    - docker push $DOCKER_REGISTRY/$APP_NAME:$job_started_at
+    - docker push $DOCKER_REGISTRY/$APP_NAME:latest
+
+.deploy-redmine:
+  image: amazon/aws-cli
+  variables:
+    GIT_STRATEGY: none
+  stage: deploy
+  script:
+    - aws ecs update-service --cluster $ECS_CLUSTER_NAME --service $ECS_SERVICE_NAME_REDMINE --force-new-deployment
+    - aws ecs update-service --cluster $ECS_CLUSTER_NAME --service $ECS_SERVICE_NAME_SIDEKIQ --force-new-deployment
+
+.hmlg-env:
+  environment:
+    name: "homolog"
+  only:
+    - homolog
+
+.prod-env:
+  environment:
+    name: "production"
+  only:
+    - main
+
+build-redmine-homolog:
+  extends:
+    - .build-redmine
+    - .hmlg-env
+
+deploy-redmine-homolog:
+  extends:
+    - .deploy-redmine
+    - .hmlg-env
+
+build-redmine-prod:
+  extends:
+    - .build-redmine
+    - .prod-env
+
+deploy-redmine-prod:
+  extends:
+    - .deploy-redmine
+    - .prod-env

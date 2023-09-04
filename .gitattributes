@@ -20,5 +20,7 @@ vendor/* linguist-vendored
 *.ttf binary
 *.pdf binary
 *.xlsx binary
+*.eot binary
+*.woff binary
 
 Dockerfile.dev linguist-language=Dockerfile

@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   Sidekiq::Web.use(Rack::Protection, { use: :authenticity_token, logging: true, message: "Didn't work!" })
 
+  # HealthCheck
+  get :healthz, controller: :healthz, action: :healthz
+
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions",
@@ -13,6 +16,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
+  # Impersonation
   resources :users do
     member do
       post :impersonate
