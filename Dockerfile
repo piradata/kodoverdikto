@@ -41,10 +41,6 @@ RUN apk add --update --no-cache --virtual build-dependencies make g++ build-base
     bundle check || bundle install && \
     apk del build-dependencies
 
-### Define app version
-ARG APP_VERSION=untagged
-ENV APP_VERSION=${APP_VERSION}
-
 ###### PROD ONLY
 # Add code to container (only production, as in development the code is cached on runtime as a volume)
 COPY ./ $APP_ROOT
