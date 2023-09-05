@@ -1,4 +1,5 @@
 class HealthzController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:healthz]
 
   # GET /healthz
   def healthz

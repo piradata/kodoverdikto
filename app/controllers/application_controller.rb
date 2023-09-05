@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, except: [:access_denied, :render403, :render404, :render500, :healthz]
+  before_action :authenticate_user!, except: [:access_denied, :render403, :render404, :render500]
   impersonates :user
 
   def homepage

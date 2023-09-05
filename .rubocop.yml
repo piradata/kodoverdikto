@@ -115,3 +115,6 @@ Style/RedundantReturn:
 
 Lint/UnusedMethodArgument:
   Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
