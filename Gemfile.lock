@@ -548,7 +548,7 @@ DEPENDENCIES
   pg
   pretender
   prettier
-  puma (~> 6.2)
+  puma (~> 6.3, >= 6.3.1)
   rack-mini-profiler
   rails (~> 7.0.5, >= 7.0.5.1)
   redis
