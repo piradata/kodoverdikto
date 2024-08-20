@@ -6,6 +6,8 @@
   "service": "web",
   "overrideCommand": true,
   "workspaceFolder": "/kodoverdikto",
+  // "forwardPorts": [80, 1234, 26162],
+  // Set *default* container specific settings.json values on container create.
   "customizations": {
     "vscode": {
       "settings": {
@@ -114,6 +116,7 @@
         "eamodio.gitlens",
         "donjayamanne.githistory",
         "mhutchie.git-graph",
+        "editorconfig.editorconfig",
         "wingrunr21.vscode-ruby",
         "esbenp.prettier-vscode",
         "seatonjiang.gitmoji-vscode",
