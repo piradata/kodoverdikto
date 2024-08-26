@@ -71,7 +71,7 @@ Click on the green bar in the bottom-left corner and them select `Reopen in cont
 
 Run `bundle install` in the container terminal.
 
-To run the server press `ctrl+shift+B` to run the build task in vscode. Alternatively you can press `ctrl+P` and type `task ` (yes, `task` + an empty space) and select one of the custom tasks for the workspace. There is a ta
+To run the server press `ctrl+shift+B` to run the build task in vscode. Alternatively you can press `ctrl+P` and type `task ` (yes, `task` + an empty space) and select one of the custom tasks for the workspace. There is a task for starting `rails s` and also a task for `rails c`. These tasks become buttons on the bottom bar if you use the `actboy168.tasks` extension of vscode.
 
 Then run `guard` on a separated terminal to automate testing, formatting and bundle gem updates.
 
